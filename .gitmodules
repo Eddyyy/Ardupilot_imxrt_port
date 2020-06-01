@@ -4,3 +4,6 @@
 [submodule "ChibiOS-Contrib"]
 	path = ChibiOS-Contrib
 	url = https://github.com/ChibiOS/ChibiOS-Contrib.git
+[submodule "ChRt"]
+	path = ChRt
+	url = git@github.com:greiman/ChRt.git
