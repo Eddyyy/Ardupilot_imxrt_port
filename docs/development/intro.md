@@ -1,25 +1,25 @@
-#Introduction
+# Introduction
 These are my initial thoughts starting the project. I had a very basic idea of what I wanted to do
 but didn't have any specific intentions behind it other than to learn. As we will see later that
 changed.
 
-##Requirements (sort of)
+## Requirements (sort of)
 
-###Need to have
+### Need to have
 1. Chip to run the control algorithms
 2. IO to actuators and propulsion
 3. IMU or IMU port
 4. Telemetry IO
 5. Sensor IO
 
-###Extra
+### Extra
 1. Potential power supply
 2. CC or Accelerator connection (PCIE or usb or serial or something)
 3. IO Processor or FPGA
 
-##Context
+## Context
 First researching was done based on the type of processors that are being used in flight controllers
- and the new ones being developed today. One of the big things I was looking for was a chip that
+and the new ones being developed today. One of the big things I was looking for was a chip that
 may be able to provide something not currently available in Ardupilot based drones built now. I had
 also been working on a brushed DC motor speed controller which had lead me through the stm32
 ecosystem.  One thing I had felt it was missing was a high speed processing MCU. I hadn't looked

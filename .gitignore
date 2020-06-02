@@ -33,3 +33,6 @@
 
 # Chip doc files, not sure if free to show
 docs/chip_docs/*
+
+# Text Editor Files
+.*.swp
