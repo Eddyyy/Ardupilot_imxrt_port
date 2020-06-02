@@ -9,5 +9,26 @@ are installed, typing `make` in the repo folder is all that is needed.
 https://github.com/PaulStoffregen/teensy_loader_cli
 
 
-For the eval board, evk_rt1020, the steps are quite similar to those outlined in the above link.
-The major difference is that teensy_loader_cli is not availble for 
+For the eval board, evk_rt1020, the steps are quite similar to those outlined in the above blog post.
+The major difference is that teensy_loader_cli is not available for the IMXRT Boards. To replace
+this we use something derived from the NXP Page
+[Get Started with the MIMXRT1020-EVK](https://www.nxp.com/document/guide/get-started-with-the-mimxrt1020-evk:GS-MIMXRT1020-EVK).
+
+The resulting toolchain uses the ARM Gcc toolchain to compile the code and a combination of the gdb
+program in ARM gcc and jlink gdb server. (installed with `sudo apt install jlink`)
+Running the following should compile and load onto a imxrt1020 eval board.
+```
+ARMGCC_DIR=/path/to/gcc-arm-none-eabi-9-2019-q4-major/ ./build_flexspi_nor_debug.sh
+```
+
+Connect the board and in another terminal type:
+```
+JLinkGDBServer /path/to/sdk/hello_world/evkmimxrt1020_sdram_init.jlinkscript
+```
+
+In the original terminal type:
+```
+/path/to/gcc-arm-none-eabi-9-2019-q4-major/bin/arm-none-eabi-gdb hello_world.elf
+```
+
+
