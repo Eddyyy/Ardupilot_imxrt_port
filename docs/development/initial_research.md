@@ -22,12 +22,15 @@ This follows Ardupilots reasoning to switching to ChibiOS and compares to the ol
 The plan is to implement the HAL Low Level Drivers (LLD) using the
 [NXP SDK](https://mcuxpresso.nxp.com/api_doc/dev/1402/index.html).
 Running as many tests as possible to verify functionality. Then next step would be to focus on
-optimising the design reducing redundancies from the SDK
+optimising the design reducing redundancies from the SDK.
 Further resources for integrating can be found in the following links:
-    * http://www.chibios.org/dokuwiki/doku.php?id=chibios:documentation:books:rt:start
-        * Great online book outlining usage and components of the CHibiOS RTOS.
-    * http://chibiforge.org/doc/19.1/full_rm/index.html
-        * Auto-generated Doxygen documentation from the ChibiOS repository.
-    * https://www.nxp.com/design/software/development-software/mcuxpresso-software-and-tools/mcuxpresso-config-tools-pins-clocks-peripherals:MCUXpresso-Config-Tools?tab=Design_Tools_Tab
-    * https://mcuxpresso.nxp.com/en/select
+
+*  http://www.chibios.org/dokuwiki/doku.php?id=chibios:documentation:books:rt:start
+    *  Great online book outlining usage and components of the CHibiOS RTOS.
+* http://chibiforge.org/doc/19.1/full_rm/index.html
+    * Auto-generated Doxygen documentation from the ChibiOS repository.
+* https://www.nxp.com/design/software/development-software/mcuxpresso-software-and-tools/mcuxpresso-config-tools-pins-clocks-peripherals:MCUXpresso-Config-Tools?tab=Design_Tools_Tab
+    * Tools for creating a new project, Similar to the STM32cubemx.
+* https://mcuxpresso.nxp.com/en/select
+    * SDK creation from NXP and an alternative to the previous link
 
