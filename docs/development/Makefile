@@ -1,7 +1,7 @@
-markdown_f = $(wildcard *.md)
-compiled_mkd = $(markdown_f:.md=.html)
+MARKDOWN_F = $(wildcard *.md)
+COMPILED_MKD = $(MARKDOWN_F:.md=.html)
 
-all: $(compiled_mkd)
+all: $(COMPILED_MKD)
 
 %.html: %.md
 	markdown_py -f $@ $<

@@ -10,11 +10,16 @@ E.g. SITL and Linux HAL).
 
 
 ![ChibiOS Structure](http://www.chibios.org/dokuwiki/lib/exe/fetch.php?cache=&media=chibios:documentation:books:rt:architecture:architecture.png)
+
 For the Imxrt10xx MCUs', the HAL Board Layer is the portion to be implemented for this project.
 The RT Port Layer is specific to MCU core (ARM Cortex M7) and is already implement for that core.
 [ChibiOS Structure Description](http://www.chibios.org/dokuwiki/doku.php?id=chibios:documentation:books:rt:architecture)
 [ChibiOS Book Documentation](http://www.chibios.org/dokuwiki/doku.php?id=chibios:documentation:books:rt:start)
 
+This follows Ardupilots reasoning to switching to ChibiOS and compares to the old RTOS used, NutX.
 [Ardupilot on ChibiOS](https://www.youtube.com/watch?v=y2KCB0a3xMg)
 
-
+The plan is to implement the HAL Low Level Drivers (LLD) using the
+[NXP SDK](https://mcuxpresso.nxp.com/api_doc/dev/1402/index.html).
+Running as many tests as possible to verify functionality. Then next step would be to focus on
+optimising the design reducing redundancies from the SDK
