@@ -32,5 +32,14 @@ Further resources for integrating can be found in the following links:
 * https://www.nxp.com/design/software/development-software/mcuxpresso-software-and-tools/mcuxpresso-config-tools-pins-clocks-peripherals:MCUXpresso-Config-Tools?tab=Design_Tools_Tab
     * Tools for creating a new project, Similar to the STM32cubemx.
 * https://mcuxpresso.nxp.com/en/select
-    * SDK creation from NXP and an alternative to the previous link
-
+    * SDK creation from NXP and an alternative to the previous link.
+* https://mcuxpresso.nxp.com/api_doc/dev/1402/index.html
+    * NXP SDK Reference Manual
+* https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_HAL
+    * Ardupilot HAL layer code for integrating new FC boards.
+* https://github.com/ArduPilot/ChibiOS
+    * Ardupilot fork of ChibiOS
+* https://gitter.im/ArduPilot/ChibiOS?at=5b0298e39ad18967b901335a
+    * Arupilots ChibiOS disscussion channel.
+* https://mcuxpresso.nxp.com/en/dashboard
+    * Self-Documenting NXP Resource central location.
