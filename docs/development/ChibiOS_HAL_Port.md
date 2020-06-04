@@ -23,18 +23,48 @@ There are a set number of peripheral devices that are to be ported to the HAL. T
 external to the ARM core but still implement in silicon on the MCU.
 ### Resources For implementing drivers
 * https://www.playembedded.org/blog/chibioshal-design-an-object-oriented-approach/
+* [ChibiOS HAL Documentation](http://chibios.sourceforge.net/docs3/hal/group___h_a_l___n_o_r_m_a_l___d_r_i_v_e_r_s.html)
 * Need to create some examples under the testhal folder.
     * Read through existing examples
     * `ChibiOS/testhal`
+* Overall template found in `os/hal/templates`
+* `/os/hal/board/readme.txt`
+* ChibiStudio IDE can help generate board.\* files
+
+### HAL config files describing MCU
 * Templates for config files
     * [ ] os/rt/templates/chconf.h
     * [ ] os/hal/templates/halconf.h
     * [ ] os/hal/templates/mcuconf.h
+* LLD Files
+    * [ ] os/hal/templates/hal_lld.\*
+    * [ ] os/hal/templates/platform.mk
+* Startup files
+    * [ ] /os/common/startup/ARMCMx/compilers/
+
 
 ### Devices to be ported
-1. Port Abstraction Layer (PAL)
-2. USART Layer
+* Port Abstraction Layer (PAL)
+    * [ ] hal_pal_lld.\*
+* TIMER Layer
+* EXTI Layer (External interrupts)
+* USART Layer
+* USB Layer
+* ADC Layer
+* DAC Layer
+* CAN Layer
+* I2C Layer
+* SPI Layer
+* DMA Layer
+* SDMMC Layer
+* OTG Layer?
+* MAC Layer?
+* CRYPto Layer (maybe not needed atm)
+* WatchDog Timer Layer?
 
 ## HAL Board Layer
 Small guide on porting to a new board:
 http://www.chibios.com/forum/viewtopic.php?t=2655
+
+* Board specific files
+    * [ ] os/hal/templates/board.*
