@@ -27,9 +27,9 @@ external to the ARM core but still implement in silicon on the MCU.
     * Read through existing examples
     * `ChibiOS/testhal`
 * Templates for config files
-    [ ] os/rt/templates/chconf.h
-    [ ] os/hal/templates/halconf.h
-    [ ] os/hal/templates/mcuconf.h
+    * [ ] os/rt/templates/chconf.h
+    * [ ] os/hal/templates/halconf.h
+    * [ ] os/hal/templates/mcuconf.h
 
 ### Devices to be ported
 1. Port Abstraction Layer (PAL)
