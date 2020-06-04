@@ -17,3 +17,16 @@ similar features and internal structure.
 ![ChibiOS Structure](http://www.chibios.org/dokuwiki/lib/exe/fetch.php?cache=&media=chibios:documentation:books:rt:architecture:architecture.png)
 
 In the linked image, we will be implementing the HAL Port Layer first then the HAL Board Layer.
+
+## HAL Port Layer
+There are a set number of peripheral devices that are to be ported to the HAL. The devices are
+external to the ARM core but still implement in silicon on the MCU.
+### Resources For implementing drivers
+* https://www.playembedded.org/blog/chibioshal-design-an-object-oriented-approach/
+
+### Devices to be ported
+
+
+## HAL Board Layer
+Small guide on porting to a new board:
+http://www.chibios.com/forum/viewtopic.php?t=2655
