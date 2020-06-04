@@ -23,9 +23,17 @@ There are a set number of peripheral devices that are to be ported to the HAL. T
 external to the ARM core but still implement in silicon on the MCU.
 ### Resources For implementing drivers
 * https://www.playembedded.org/blog/chibioshal-design-an-object-oriented-approach/
+* Need to create some examples under the testhal folder.
+    * Read through existing examples
+    * `ChibiOS/testhal`
+* Templates for config files
+    [ ] os/rt/templates/chconf.h
+    [ ] os/hal/templates/halconf.h
+    [ ] os/hal/templates/mcuconf.h
 
 ### Devices to be ported
-
+1. Port Abstraction Layer (PAL)
+2. USART Layer
 
 ## HAL Board Layer
 Small guide on porting to a new board:
