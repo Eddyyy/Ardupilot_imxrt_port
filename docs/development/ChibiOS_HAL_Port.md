@@ -45,7 +45,6 @@ external to the ARM core but still implement in silicon on the MCU.
 
 ### Devices to be ported
 * Port Abstraction Layer (PAL)
-    * [ ] hal_pal_lld.\*
 * TIMER Layer
 * EXTI Layer (External interrupts)
 * USART Layer
@@ -67,4 +66,21 @@ Small guide on porting to a new board:
 http://www.chibios.com/forum/viewtopic.php?t=2655
 
 * Board specific files
-    * [ ] os/hal/templates/board.*
+    * [ ] os/hal/templates/board.\*
+
+# HAL Specific Sections
+
+## Port Abstraction Layer (PAL)
+
+### Files to be implemented
+* [ ] hal_pal_lld.h
+* [ ] hal_pal_lld.c
+* [ ] port_map.h
+
+### Resources
+* https://www.playembedded.org/blog/stm32-gpio-chibios-pal/
+* os/hal/ports/STM32/LLD/GPIOv3/\*
+* os/hal/include/hal_pal_lld.h
+* os/hal/src/hal_pal_lld.c
+* testhal/STM32/multi/PAL/main.c
+* http://chibiforge.org/doc/19.1/hal/group___p_a_l.html

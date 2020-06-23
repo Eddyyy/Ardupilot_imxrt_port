@@ -38,3 +38,5 @@ cd flexspi_nor_debug
 ```
 
 
+# Potiential Other Resources
+https://www.playembedded.org/blog/tag/openocd/
