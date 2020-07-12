@@ -22,8 +22,6 @@ cd /path/to/sdk/hello_world/armgcc
 sudo chmod 744 build_flexspi_nor_debug.sh
 ARMGCC_DIR=/path/to/gcc-arm-none-eabi-9-2019-q4-major/ ./build_flexspi_nor_debug.sh
 ```
-After some small testing it was also found that `/path/to/gcc-arm-none-eabi-9-2019-q4-major/` needed
-to be absolute rather than relative.
 
 Connect the board and in another terminal type:
 ```
@@ -40,3 +38,12 @@ cd flexspi_nor_debug
 
 # Potiential Other Resources
 https://www.playembedded.org/blog/tag/openocd/
+
+## CMake Fixes
+It was also found that the `arm.gcc` cmake file being used gave depreciated warnings. It was using
+CMAKE_FORCE_C_COMPILER functions rather than directing cmake to find the compiler with
+SET CMAKE_C_COMPILER commands. This was changed but due to resons outlined in this
+[stack overflow post](https://stackoverflow.com/questions/53633705/cmake-the-c-compiler-is-not-able-to-compile-a-simple-test-program),
+the line `set(CMAKE_TRY_COMPILE_TARGET_TYPE "STATIC_LIBRARY")` was also added.
+In short cmake trys to check the compiler but since we use a custom linking script for imxrt chips,
+it fails when running on a generic environment.
