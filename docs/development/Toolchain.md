@@ -14,6 +14,16 @@ The major difference is that teensy_loader_cli is not available for the IMXRT Bo
 this we use something derived from the NXP Page
 [Get Started with the MIMXRT1020-EVK](https://www.nxp.com/document/guide/get-started-with-the-mimxrt1020-evk:GS-MIMXRT1020-EVK).
 
+### Update:
+Some further research was and through testing it was found that the aformentioned guide does not work
+with the firmware loaded onto the on-board debugger. The NXP ide, MCUxpresso, worked perfectly is
+a decent debugger for the given sdk. Unfortunately while the ide works great when using the given 
+sdk it takes a large setup for anything external. This lead to the tool
+[pyOCD](https://github.com/mbedmicro/pyOCD) which provides the GDB remote server replacing the
+JLink server in the NXP guide.
+### Further pyOCD resources
+    * [Debugging with pyOCD](https://os.mbed.com/users/maclobdell/notebook/debugging-with-pyocd/)
+
 The resulting toolchain uses the ARM gcc toolchain to compile the code and a combination of the gdb
 program in ARM gcc and jlink gdb server. (installed with `sudo apt install jlink`)
 Running the following should compile and load onto a imxrt1020 eval board.
@@ -25,14 +35,17 @@ ARMGCC_DIR=/path/to/gcc-arm-none-eabi-9-2019-q4-major/ ./build_flexspi_nor_debug
 
 Connect the board and in another terminal type:
 ```
-cd /path/to/sdk/hello_world
-JLinkGDBServer evkmimxrt1020_sdram_init.jlinkscript
+pyocd gdbserver
 ```
 
 In the original terminal type:
 ```
 cd flexspi_nor_debug
-/path/to/gcc-arm-none-eabi-9-2019-q4-major/bin/arm-none-eabi-gdb hello_world.elf
+/path/to/gcc-arm-none-eabi-9-2019-q4-major/bin/arm-none-eabi-gdb
+(gdb) target remote localhost: 3333
+(gdb) file hello_world.elf
+(gdb) break main
+(gdb) continue
 ```
 
 
