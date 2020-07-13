@@ -22,7 +22,7 @@ sdk it takes a large setup for anything external. This lead to the tool
 [pyOCD](https://github.com/mbedmicro/pyOCD) which provides the GDB remote server replacing the
 JLink server in the NXP guide.
 ### Further pyOCD resources
-    * [Debugging with pyOCD](https://os.mbed.com/users/maclobdell/notebook/debugging-with-pyocd/)
+* [Debugging with pyOCD](https://os.mbed.com/users/maclobdell/notebook/debugging-with-pyocd/)
 
 The resulting toolchain uses the ARM gcc toolchain to compile the code and a combination of the gdb
 program in ARM gcc and jlink gdb server. (installed with `sudo apt install jlink`)
