@@ -17,15 +17,15 @@ this we use something derived from the NXP Page
 ### Update:
 Some further research was and through testing it was found that the aformentioned guide does not work
 with the firmware loaded onto the on-board debugger. The NXP ide, MCUxpresso, worked perfectly is
-a decent debugger for the given sdk. Unfortunately while the ide works great when using the given 
-sdk it takes a large setup for anything external. This lead to the tool
+a decent debugger for the given sdk. Unfortunately while the ide works great when using the 
+sdk it takes a large setup for anything external. This leads to the tool
 [pyOCD](https://github.com/mbedmicro/pyOCD) which provides the GDB remote server replacing the
 JLink server in the NXP guide.
 ### Further pyOCD resources
 * [Debugging with pyOCD](https://os.mbed.com/users/maclobdell/notebook/debugging-with-pyocd/)
 
 The resulting toolchain uses the ARM gcc toolchain to compile the code and a combination of the gdb
-program in ARM gcc and jlink gdb server. (installed with `sudo apt install jlink`)
+program in ARM gcc and pyOCD gdb server. (installed with `sudo pip3 install pyocd` on Debian Buster)
 Running the following should compile and load onto a imxrt1020 eval board.
 ```
 cd /path/to/sdk/hello_world/armgcc
@@ -44,6 +44,7 @@ cd flexspi_nor_debug
 /path/to/gcc-arm-none-eabi-9-2019-q4-major/bin/arm-none-eabi-gdb
 (gdb) target remote localhost: 3333
 (gdb) file hello_world.elf
+(gdb) load hello_world
 (gdb) break main
 (gdb) continue
 ```
@@ -51,6 +52,8 @@ cd flexspi_nor_debug
 
 # Potiential Other Resources
 https://www.playembedded.org/blog/tag/openocd/
+It was found that while the cortex-m7 core is supported by openOCD, the IMX.rt line of processors
+is not yet support with no .cfg file made.
 
 ## CMake Fixes
 It was also found that the `arm.gcc` cmake file being used gave depreciated warnings. It was using
