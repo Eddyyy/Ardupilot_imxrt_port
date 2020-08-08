@@ -15,9 +15,9 @@ this we use something derived from the NXP Page
 [Get Started with the MIMXRT1020-EVK](https://www.nxp.com/document/guide/get-started-with-the-mimxrt1020-evk:GS-MIMXRT1020-EVK).
 
 ### Update:
-Some further research was and through testing it was found that the aformentioned guide does not work
-with the firmware loaded onto the on-board debugger. The NXP ide, MCUxpresso, worked perfectly is
-a decent debugger for the given sdk. Unfortunately while the ide works great when using the 
+Some further research was and through testing it was found that the aforementioned guide does not
+work with the firmware loaded onto the on-board debugger. The NXP ide, MCUxpresso, worked perfectly
+is a decent debugger for the given sdk. Unfortunately while the ide works great when using the 
 sdk it takes a large setup for anything external. This leads to the tool
 [pyOCD](https://github.com/mbedmicro/pyOCD) which provides the GDB remote server replacing the
 JLink server in the NXP guide.
@@ -53,7 +53,7 @@ cd flexspi_nor_debug
 # Potiential Other Resources
 https://www.playembedded.org/blog/tag/openocd/
 It was found that while the cortex-m7 core is supported by openOCD, the IMX.rt line of processors
-is not yet support with no .cfg file made.
+is not yet supported with no .cfg file made.
 
 ## CMake Fixes
 It was also found that the `arm.gcc` cmake file being used gave depreciated warnings. It was using
