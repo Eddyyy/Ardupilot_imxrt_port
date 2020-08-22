@@ -111,9 +111,9 @@ DEPDIR   := ./dep
 STARTUPLD = ./startup
 include $(STARTUPLD)/startup_MIMXRT1021.mk
 # Library files
-include ./library/xip/xip.mk
-include ./library/drivers/drivers.mk
-include ./library/debug/debug.mk
+include ./libraries/xip/xip.mk
+include ./libraries/drivers/drivers.mk
+include ./libraries/debug/debug.mk
 # MCU Files
 include ./src/board/board.mk
 include ./src/device/device.mk
@@ -220,5 +220,5 @@ ULIBS =
 # End of user defines
 ##############################################################################
 
-RULESPATH = $(BUILDDIR)
+RULESPATH = make
 include $(RULESPATH)/rules.mk
