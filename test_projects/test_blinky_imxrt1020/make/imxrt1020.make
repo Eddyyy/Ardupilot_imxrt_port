@@ -7,6 +7,7 @@
 ifeq ($(USE_OPT),)
   USE_OPT = \
     -g \
+	-O0 \
     -ffreestanding \
     -fno-builtin \
     -mapcs \
@@ -29,25 +30,16 @@ ifeq ($(USE_LINK_GC),)
 endif
 
 # Linker extra options here.
+    # --specs=nano.specs, 
+    # --specs=nosys.specs 
 ifeq ($(USE_LDOPT),)
-  USE_LDOPT = \
-    --specs=nano.specs \
-    --specs=nosys.specs \
-    -Wl, -static \
-    -Wl, -z,muldefs \
-	-Wl, --start-group \
-	-lm \
-	-lc \
-	-lgcc \
-	-lnosys \
-	-Wl,--end-group
+  USE_LDOPT = -lm,-lc,-lgcc,-lnosys,-static,-z,muldefs,-static
 endif
 
 
 # Enable this if you want link time optimizations (LTO)
-# no = -O0
 ifeq ($(USE_LTO),)
-  USE_LTO = no
+  USE_LTO = yes
 endif
 
 # If enabled, this option allows to compile the application in THUMB mode.
@@ -58,7 +50,7 @@ endif
 
 # Enable this if you want to see the full log while compiling.
 ifeq ($(USE_VERBOSE_COMPILE),)
-  USE_VERBOSE_COMPILE = yes
+  USE_VERBOSE_COMPILE = no
 endif
 
 #
@@ -103,9 +95,9 @@ endif
 PROJECT = test_blinky
 
 # Imported source files and paths
-CONFDIR  := ./src/board
+# CONFDIR  := ./src/board
 BUILDDIR := ./build
-DEPDIR   := ./dep
+DEPDIR   := ./.dep
 
 # Startup files.
 STARTUPLD = ./startup
@@ -121,16 +113,15 @@ include ./src/device/device.mk
 ALLINC += ./include/CMSIS
 
 # Initializsing assembly file
-ALLASMSRC += ./startup/*.S
+# ALLASMSRC += ./startup/startup_MIMXRT1021.S
 
 # Define linker script file here
-LDSCRIPT= $(STARTUPLD)/*.ld
+LDSCRIPT= $(STARTUPLD)/MIMXRT1021xxxxx_flexspi_nor.ld
 
 # C sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
 CSRC = $(ALLCSRC) \
        $(TESTSRC) \
-       $(CONFDIR)/* \
        ./src/gpio_led_output.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
@@ -154,8 +145,9 @@ INCDIR = $(ALLINC) $(TESTINC) $(CONFDIR)
 # -mcpu=
 MCU  = cortex-m7
 
+TOOLCHN_DIR = /home/eddy/Documents/kicad_projects/advanced_flight_controller/gcc-arm-none-eabi-9-2019-q4-major/bin
 #TRGT = arm-elf-
-TRGT = arm-none-eabi-
+TRGT = $(TOOLCHN_DIR)/arm-none-eabi-
 CC   = $(TRGT)gcc
 CPPC = $(TRGT)g++
 # Enable loading with g++ only if you need C++ runtime support.

@@ -5,7 +5,7 @@ DEBUGSRC = ./libraries/debug/src/generic_list.c \
 		   ./libraries/debug/src/serial_manager.c \
 		   ./libraries/debug/src/serial_port_uart.c
 
-DEBUGINC = ./libraries/debug/src
+DEBUGINC = ./libraries/debug/include
 
 DEBUGASM =
 
