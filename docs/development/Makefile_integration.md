@@ -21,10 +21,14 @@ More info found at: [ARM Options](https://gcc.gnu.org/onlinedocs/gcc/ARM-Options
 ### USE_LINK_GC = yes
 This adds `-ffunction-sections -fdata-sections -fno-common` options to compiling c code and adds
 `--gc-sections` option to linking code. This was selected to imitate the NXP SDK options.
+
 `-ffunction-sections -fdata-sections` Control how the compiled code is laid out and improves linking
 optimizations.
-`-fno-common` TODO
+
+`-fno-common` TODO, Currently provided as part of rules.mk and is default gcc behaviour.
+
 `--gc-sections` Will garbage collect unused portions of code and data, minimizing binary size.
+
 #### Relavent Documentation
 * [`-ffunction-sections` and ` -fdata-sections`](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html#Optimize-Options)
 * [-fno-common](https://gcc.gnu.org/onlinedocs/gcc/Code-Gen-Options.html)
