@@ -9,9 +9,8 @@ ifeq ($(USE_OPT),)
     -g \
 	-O0 \
     -ffreestanding \
-    -fno-builtin \
-    -mapcs \
-    -std=gnu99
+    -std=gnu99 \
+    -mapcs-frame
 endif
 
 # C specific options here (added to USE_OPT).
