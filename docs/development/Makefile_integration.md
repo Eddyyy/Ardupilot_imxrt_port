@@ -35,12 +35,26 @@ optimizations.
 * [--gc-sections](https://linux.die.net/man/1/arm-linux-gnu-ld)
 
 ### USE_LDOPT
+Adds flags to be sent to the linker when it is run.
+* `-lm,-lc,-lgcc,-lnosys` Used to specify libraries to be used/linked during the linking stage.
+* `-static` Indicates that the linker should not use any extra shared libraries apart from the 
+previously reference libraries.
+* `-z,muldefs` Allows for the existence of multiple definitions of a symbol without the linker
+throwing fatal errors.
 
-### USE_LTO
+#### Relavent Documentation
+[Linking Options](https://linux.die.net/man/1/arm-linux-gnu-ld)
 
-### USE_THUMB
+### USE_LTO = yes
+Adds the `-flto` option to all compiling.
+* `-flto` Runs link-time optimizations. Check documentation for further details.
+[Documentation](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html#Optimize-Options)
 
-### USE_VERBOSE_COMPILE
+### USE_THUMB = yes
+Adds `-mthumb` flag to compiling. From makefile: If enabled, this option allows to compile the
+application in THUMB mode. [Documentation](https://gcc.gnu.org/onlinedocs/gcc/ARM-Options.html)
+
+### USE_VERBOSE_COMPILE = no
 
 ## Architecture Specific Options
 ### Process and Exception Stacksize
