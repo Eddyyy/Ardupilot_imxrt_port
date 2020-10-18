@@ -32,7 +32,7 @@ endif
     # --specs=nano.specs, 
     # --specs=nosys.specs 
 ifeq ($(USE_LDOPT),)
-  USE_LDOPT = -lm,-lc,-lgcc,-lnosys,-static,-z,muldefs,-static
+  USE_LDOPT = -lm,-lc,-lgcc,-lnosys,-static,-z,muldefs
 endif
 
 
