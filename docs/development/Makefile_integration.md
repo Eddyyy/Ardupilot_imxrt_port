@@ -83,7 +83,8 @@ application in THUMB mode. [Documentation](https://gcc.gnu.org/onlinedocs/gcc/AR
 
 ## Final Notes
 ### changes to rules.mk
-Had to remove the `-nostartfiles` option as the NXP SDK does not implement a crt0.s or crt1.c as the
-ChibiOS system does. This will something that will need to be fixed later to fully integrate with 
-the ChibiOS system. Potiential fixes would require some way to cancel the `-nostartfiles` option
-or substitue a different rules.mk file or implment/modify the ChibiOS startup files.
+Had to remove the `-nostartfiles` option as the NXP SDK does not implement a crt0.s or crt1.c
+whereas the ChibiOS system does. This is something that will need to be fixed later to fully
+integrate with the ChibiOS system. Potiential fixes would require some way to cancel the
+`-nostartfiles` option or substitue a different rules.mk file or implment/modify the ChibiOS
+startup files.
