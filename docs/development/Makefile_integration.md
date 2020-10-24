@@ -60,7 +60,13 @@ application in THUMB mode. [Documentation](https://gcc.gnu.org/onlinedocs/gcc/AR
 ### Process and Exception Stacksize
 0x400
 
-### USE_FPU and USE_FPU_OPT
+### USE_FPU=hard and USE_FPU_OPT
+* `-mfloat-abi=$(USE_FPU)` Defines floating point ABI(spec) to be used by GCC.
+* `-mfpu=fpv5-d16` Notifies gcc of the floating point hardware (or emulation) availble on the
+target mcu.
+
+[Documentation](https://gcc.gnu.org/onlinedocs/gcc/ARM-Options.html)
+[Further Reading](https://embeddedartistry.com/blog/2017/10/11/demystifying-arm-floating-point-compiler-options/)
 
 ## Projects, Sources and Paths
 ### Project name and temp folders
