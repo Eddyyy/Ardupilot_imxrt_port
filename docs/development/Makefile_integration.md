@@ -49,12 +49,12 @@ throwing fatal errors.
 Adds the `-flto` option to all compiling.
 * `-flto` Runs link-time optimizations. Check documentation for further details.
 [Documentation](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html#Optimize-Options)
+(ctrl-f '-flto')
 
 ### USE_THUMB = yes
 Adds `-mthumb` flag to compiling. From makefile: If enabled, this option allows to compile the
 application in THUMB mode. [Documentation](https://gcc.gnu.org/onlinedocs/gcc/ARM-Options.html)
-
-### USE_VERBOSE_COMPILE = no
+(ctrl-f '-mthumb')
 
 ## Architecture Specific Options
 ### Process and Exception Stacksize
