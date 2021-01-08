@@ -46,13 +46,13 @@
 /**
  * @brief   Width, in bits, of an I/O port.
  */
-#define PAL_IOPORTS_WIDTH           16U
+#define PAL_IOPORTS_WIDTH           32U
 
 /**
  * @brief   Whole port mask.
  * @details This macro specifies all the valid bits into a port.
  */
-#define PAL_WHOLE_PORT              ((ioportmask_t)0xFFFFU)
+#define PAL_WHOLE_PORT              ((ioportmask_t)0xFFFFFFFFU)
 /** @} */
 
 /**

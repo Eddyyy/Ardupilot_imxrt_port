@@ -44,161 +44,161 @@
  * @brief   Enables the ADC subsystem.
  */
 #if !defined(HAL_USE_ADC) || defined(__DOXYGEN__)
-#define HAL_USE_ADC                         TRUE
+#define HAL_USE_ADC                         FALSE
 #endif
 
 /**
  * @brief   Enables the CAN subsystem.
  */
 #if !defined(HAL_USE_CAN) || defined(__DOXYGEN__)
-#define HAL_USE_CAN                         TRUE
+#define HAL_USE_CAN                         FALSE
 #endif
 
 /**
  * @brief   Enables the cryptographic subsystem.
  */
 #if !defined(HAL_USE_CRY) || defined(__DOXYGEN__)
-#define HAL_USE_CRY                         TRUE
+#define HAL_USE_CRY                         FALSE
 #endif
 
 /**
  * @brief   Enables the DAC subsystem.
  */
 #if !defined(HAL_USE_DAC) || defined(__DOXYGEN__)
-#define HAL_USE_DAC                         TRUE
+#define HAL_USE_DAC                         FALSE
 #endif
 
 /**
  * @brief   Enables the EFlash subsystem.
  */
 #if !defined(HAL_USE_EFL) || defined(__DOXYGEN__)
-#define HAL_USE_EFL                         TRUE
+#define HAL_USE_EFL                         FALSE
 #endif
 
 /**
  * @brief   Enables the GPT subsystem.
  */
 #if !defined(HAL_USE_GPT) || defined(__DOXYGEN__)
-#define HAL_USE_GPT                         TRUE
+#define HAL_USE_GPT                         FALSE
 #endif
 
 /**
  * @brief   Enables the I2C subsystem.
  */
 #if !defined(HAL_USE_I2C) || defined(__DOXYGEN__)
-#define HAL_USE_I2C                         TRUE
+#define HAL_USE_I2C                         FALSE
 #endif
 
 /**
  * @brief   Enables the I2S subsystem.
  */
 #if !defined(HAL_USE_I2S) || defined(__DOXYGEN__)
-#define HAL_USE_I2S                         TRUE
+#define HAL_USE_I2S                         FALSE
 #endif
 
 /**
  * @brief   Enables the ICU subsystem.
  */
 #if !defined(HAL_USE_ICU) || defined(__DOXYGEN__)
-#define HAL_USE_ICU                         TRUE
+#define HAL_USE_ICU                         FALSE
 #endif
 
 /**
  * @brief   Enables the MAC subsystem.
  */
 #if !defined(HAL_USE_MAC) || defined(__DOXYGEN__)
-#define HAL_USE_MAC                         TRUE
+#define HAL_USE_MAC                         FALSE
 #endif
 
 /**
  * @brief   Enables the MMC_SPI subsystem.
  */
 #if !defined(HAL_USE_MMC_SPI) || defined(__DOXYGEN__)
-#define HAL_USE_MMC_SPI                     TRUE
+#define HAL_USE_MMC_SPI                     FALSE
 #endif
 
 /**
  * @brief   Enables the PWM subsystem.
  */
 #if !defined(HAL_USE_PWM) || defined(__DOXYGEN__)
-#define HAL_USE_PWM                         TRUE
+#define HAL_USE_PWM                         FALSE
 #endif
 
 /**
  * @brief   Enables the RTC subsystem.
  */
 #if !defined(HAL_USE_RTC) || defined(__DOXYGEN__)
-#define HAL_USE_RTC                         TRUE
+#define HAL_USE_RTC                         FALSE
 #endif
 
 /**
  * @brief   Enables the SDC subsystem.
  */
 #if !defined(HAL_USE_SDC) || defined(__DOXYGEN__)
-#define HAL_USE_SDC                         TRUE
+#define HAL_USE_SDC                         FALSE
 #endif
 
 /**
  * @brief   Enables the SERIAL subsystem.
  */
 #if !defined(HAL_USE_SERIAL) || defined(__DOXYGEN__)
-#define HAL_USE_SERIAL                      TRUE
+#define HAL_USE_SERIAL                      FALSE
 #endif
 
 /**
  * @brief   Enables the SERIAL over USB subsystem.
  */
 #if !defined(HAL_USE_SERIAL_USB) || defined(__DOXYGEN__)
-#define HAL_USE_SERIAL_USB                  TRUE
+#define HAL_USE_SERIAL_USB                  FALSE
 #endif
 
 /**
  * @brief   Enables the SIO subsystem.
  */
 #if !defined(HAL_USE_SIO) || defined(__DOXYGEN__)
-#define HAL_USE_SIO                         TRUE
+#define HAL_USE_SIO                         FALSE
 #endif
 
 /**
  * @brief   Enables the SPI subsystem.
  */
 #if !defined(HAL_USE_SPI) || defined(__DOXYGEN__)
-#define HAL_USE_SPI                         TRUE
+#define HAL_USE_SPI                         FALSE
 #endif
 
 /**
  * @brief   Enables the TRNG subsystem.
  */
 #if !defined(HAL_USE_TRNG) || defined(__DOXYGEN__)
-#define HAL_USE_TRNG                        TRUE
+#define HAL_USE_TRNG                        FALSE
 #endif
 
 /**
  * @brief   Enables the UART subsystem.
  */
 #if !defined(HAL_USE_UART) || defined(__DOXYGEN__)
-#define HAL_USE_UART                        TRUE
+#define HAL_USE_UART                        FALSE
 #endif
 
 /**
  * @brief   Enables the USB subsystem.
  */
 #if !defined(HAL_USE_USB) || defined(__DOXYGEN__)
-#define HAL_USE_USB                         TRUE
+#define HAL_USE_USB                         FALSE
 #endif
 
 /**
  * @brief   Enables the WDG subsystem.
  */
 #if !defined(HAL_USE_WDG) || defined(__DOXYGEN__)
-#define HAL_USE_WDG                         TRUE
+#define HAL_USE_WDG                         FALSE
 #endif
 
 /**
  * @brief   Enables the WSPI subsystem.
  */
 #if !defined(HAL_USE_WSPI) || defined(__DOXYGEN__)
-#define HAL_USE_WSPI                        TRUE
+#define HAL_USE_WSPI                        FALSE
 #endif
 
 /*===========================================================================*/
@@ -230,7 +230,7 @@
  * @note    Disabling this option saves both code and data space.
  */
 #if !defined(ADC_USE_WAIT) || defined(__DOXYGEN__)
-#define ADC_USE_WAIT                        TRUE
+#define ADC_USE_WAIT                        FALSE
 #endif
 
 /**
@@ -238,7 +238,7 @@
  * @note    Disabling this option saves both code and data space.
  */
 #if !defined(ADC_USE_MUTUAL_EXCLUSION) || defined(__DOXYGEN__)
-#define ADC_USE_MUTUAL_EXCLUSION            TRUE
+#define ADC_USE_MUTUAL_EXCLUSION            FALSE
 #endif
 
 /*===========================================================================*/
@@ -249,7 +249,7 @@
  * @brief   Sleep mode related APIs inclusion switch.
  */
 #if !defined(CAN_USE_SLEEP_MODE) || defined(__DOXYGEN__)
-#define CAN_USE_SLEEP_MODE                  TRUE
+#define CAN_USE_SLEEP_MODE                  FALSE
 #endif
 
 /**
@@ -290,7 +290,7 @@
  * @note    Disabling this option saves both code and data space.
  */
 #if !defined(DAC_USE_WAIT) || defined(__DOXYGEN__)
-#define DAC_USE_WAIT                        TRUE
+#define DAC_USE_WAIT                        FALSE
 #endif
 
 /**
@@ -298,7 +298,7 @@
  * @note    Disabling this option saves both code and data space.
  */
 #if !defined(DAC_USE_MUTUAL_EXCLUSION) || defined(__DOXYGEN__)
-#define DAC_USE_MUTUAL_EXCLUSION            TRUE
+#define DAC_USE_MUTUAL_EXCLUSION            FALSE
 #endif
 
 /*===========================================================================*/
@@ -309,7 +309,7 @@
  * @brief   Enables the mutual exclusion APIs on the I2C bus.
  */
 #if !defined(I2C_USE_MUTUAL_EXCLUSION) || defined(__DOXYGEN__)
-#define I2C_USE_MUTUAL_EXCLUSION            TRUE
+#define I2C_USE_MUTUAL_EXCLUSION            FALSE
 #endif
 
 /*===========================================================================*/
@@ -320,14 +320,14 @@
  * @brief   Enables the zero-copy API.
  */
 #if !defined(MAC_USE_ZERO_COPY) || defined(__DOXYGEN__)
-#define MAC_USE_ZERO_COPY                   TRUE
+#define MAC_USE_ZERO_COPY                   FALSE
 #endif
 
 /**
  * @brief   Enables an event sources for incoming packets.
  */
 #if !defined(MAC_USE_EVENTS) || defined(__DOXYGEN__)
-#define MAC_USE_EVENTS                      TRUE
+#define MAC_USE_EVENTS                      FALSE
 #endif
 
 /*===========================================================================*/
@@ -343,7 +343,7 @@
  *          use a DMA channel and heavily loads the CPU.
  */
 #if !defined(MMC_NICE_WAITING) || defined(__DOXYGEN__)
-#define MMC_NICE_WAITING                    TRUE
+#define MMC_NICE_WAITING                    FALSE
 #endif
 
 /*===========================================================================*/
@@ -364,7 +364,7 @@
  *          at @p FALSE.
  */
 #if !defined(SDC_MMC_SUPPORT) || defined(__DOXYGEN__)
-#define SDC_MMC_SUPPORT                     TRUE
+#define SDC_MMC_SUPPORT                     FALSE
 #endif
 
 /**
@@ -374,7 +374,7 @@
  *          lower priority, this may slow down the driver a bit however.
  */
 #if !defined(SDC_NICE_WAITING) || defined(__DOXYGEN__)
-#define SDC_NICE_WAITING                    TRUE
+#define SDC_NICE_WAITING                    FALSE
 #endif
 
 /**
@@ -432,7 +432,7 @@
  * @brief   Support for thread synchronization API.
  */
 #if !defined(SIO_USE_SYNCHRONIZATION) || defined(__DOXYGEN__)
-#define SIO_USE_SYNCHRONIZATION             TRUE
+#define SIO_USE_SYNCHRONIZATION             FALSE
 #endif
 
 /*===========================================================================*/
@@ -467,7 +467,7 @@
  * @note    Disabling this option saves both code and data space.
  */
 #if !defined(SPI_USE_WAIT) || defined(__DOXYGEN__)
-#define SPI_USE_WAIT                        TRUE
+#define SPI_USE_WAIT                        FALSE
 #endif
 
 /**
@@ -483,7 +483,7 @@
  * @note    Disabling this option saves both code and data space.
  */
 #if !defined(SPI_USE_MUTUAL_EXCLUSION) || defined(__DOXYGEN__)
-#define SPI_USE_MUTUAL_EXCLUSION            TRUE
+#define SPI_USE_MUTUAL_EXCLUSION            FALSE
 #endif
 
 /**
@@ -503,7 +503,7 @@
  * @note    Disabling this option saves both code and data space.
  */
 #if !defined(UART_USE_WAIT) || defined(__DOXYGEN__)
-#define UART_USE_WAIT                       TRUE
+#define UART_USE_WAIT                       FALSE
 #endif
 
 /**
@@ -511,7 +511,7 @@
  * @note    Disabling this option saves both code and data space.
  */
 #if !defined(UART_USE_MUTUAL_EXCLUSION) || defined(__DOXYGEN__)
-#define UART_USE_MUTUAL_EXCLUSION           TRUE
+#define UART_USE_MUTUAL_EXCLUSION           FALSE
 #endif
 
 /*===========================================================================*/
@@ -523,7 +523,7 @@
  * @note    Disabling this option saves both code and data space.
  */
 #if !defined(USB_USE_WAIT) || defined(__DOXYGEN__)
-#define USB_USE_WAIT                        TRUE
+#define USB_USE_WAIT                        FALSE
 #endif
 
 /*===========================================================================*/
@@ -535,7 +535,7 @@
  * @note    Disabling this option saves both code and data space.
  */
 #if !defined(WSPI_USE_WAIT) || defined(__DOXYGEN__)
-#define WSPI_USE_WAIT                       TRUE
+#define WSPI_USE_WAIT                       FALSE
 #endif
 
 /**
@@ -543,7 +543,7 @@
  * @note    Disabling this option saves both code and data space.
  */
 #if !defined(WSPI_USE_MUTUAL_EXCLUSION) || defined(__DOXYGEN__)
-#define WSPI_USE_MUTUAL_EXCLUSION           TRUE
+#define WSPI_USE_MUTUAL_EXCLUSION           FALSE
 #endif
 
 #endif /* HALCONF_H */
