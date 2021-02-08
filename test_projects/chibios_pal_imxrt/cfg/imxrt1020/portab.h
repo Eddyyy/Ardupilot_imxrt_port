@@ -15,88 +15,60 @@
 */
 
 /**
- * @file    hal_i2s_lld.h
- * @brief   PLATFORM I2S subsystem low level driver header.
+ * @file    portab.h
+ * @brief   Application portability macros and structures.
  *
- * @addtogroup I2S
+ * @addtogroup application_portability
  * @{
  */
 
-#ifndef HAL_I2S_LLD_H
-#define HAL_I2S_LLD_H
-
-#if (HAL_USE_I2S == TRUE) || defined(__DOXYGEN__)
+#ifndef PORTAB_H
+#define PORTAB_H
 
 /*===========================================================================*/
-/* Driver constants.                                                         */
+/* Module constants.                                                         */
 /*===========================================================================*/
 
-/*===========================================================================*/
-/* Driver pre-compile time settings.                                         */
-/*===========================================================================*/
+#define PORTAB_LINE_LED1            LINE_ARD_D13
+//#define PORTAB_LINE_LED2            LINE_LED4
+#define PORTAB_LED_OFF              PAL_LOW
+#define PORTAB_LED_ON               PAL_HIGH
 
-/**
- * @name    PLATFORM configuration options
- * @{
- */
-/**
- * @brief   I2SD1 driver enable switch.
- * @details If set to @p TRUE the support for I2S1 is included.
- * @note    The default is @p FALSE.
- */
-#if !defined(PLATFORM_I2S_USE_I2S1) || defined(__DOXYGEN__)
-#define PLATFORM_I2S_USE_I2S1                  FALSE
-#endif
-/** @} */
+#define PORTAB_LINE_BUTTON          LINE_BUTTON_USER
+#define PORTAB_BUTTON_PRESSED       PAL_HIGH
+
+/*===========================================================================*/
+/* Module pre-compile time settings.                                         */
+/*===========================================================================*/
 
 /*===========================================================================*/
 /* Derived constants and error checks.                                       */
 /*===========================================================================*/
 
 /*===========================================================================*/
-/* Driver data structures and types.                                         */
+/* Module data structures and types.                                         */
 /*===========================================================================*/
 
 /*===========================================================================*/
-/* Driver macros.                                                            */
+/* Module macros.                                                            */
 /*===========================================================================*/
-
-/**
- * @brief   Low level fields of the I2S driver structure.
- */
-#define i2s_lld_driver_fields                                               \
-  /* Dummy field, it is not needed.*/                                       \
-  uint32_t                  dummy
-
-/**
- * @brief   Low level fields of the I2S configuration structure.
- */
-#define i2s_lld_config_fields                                               \
-  /* Dummy configuration, it is not needed.*/                               \
-  uint32_t                  dummy
 
 /*===========================================================================*/
 /* External declarations.                                                    */
 /*===========================================================================*/
 
-#if (PLATFORM_I2S_USE_I2S1 == TRUE) && !defined(__DOXYGEN__)
-extern I2SDriver I2SD1;
-#endif
-
 #ifdef __cplusplus
 extern "C" {
 #endif
-  void i2s_lld_init(void);
-  void i2s_lld_start(I2SDriver *i2sp);
-  void i2s_lld_stop(I2SDriver *i2sp);
-  void i2s_lld_start_exchange(I2SDriver *i2sp);
-  void i2s_lld_stop_exchange(I2SDriver *i2sp);
+
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* HAL_USE_I2S == TRUE */
+/*===========================================================================*/
+/* Module inline functions.                                                  */
+/*===========================================================================*/
 
-#endif /* HAL_I2S_LLD_H */
+#endif /* PORTAB_H */
 
 /** @} */
