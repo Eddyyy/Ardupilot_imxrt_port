@@ -33,6 +33,12 @@ chSysInit
     chThdCreate
 
 chThdCreateStatic
+    MEM_IS_ALIGNED
+    PORT_WORKING_AREA_ALIGN
+    THD_WORKING_AREA_SIZE
+    PORT_STACK_ALIGN
+    HIGHPRIO
+    chRegFindThreadByWorkingArea
     chSysLock
     PORT_SETUP_CONTEXT
     _thread_init
@@ -40,14 +46,36 @@ chThdCreateStatic
     chSysUnlock
 
 halInit
+    osalInit
+    hal_lld_init
+    palInit
+        pal_lld_init
+    sdInit
+    uartInit
+    sduInit
+    boardInit
 
 palReadLine
+    palReadPad(PAL_PORT(line), PAL_PAD(line))
+or
+    pal_lld_readline
+
 palToggleLine
+    palTogglePad(PAL_PORT(line), PAL_PAD(line))
+or
+    pal_lld_toggleline
 
 PORTAB_LINE_BUTTON
-PORTAB_BUTTON_PRESSED
-PORTAB_LINE_LED1
-PORTAB_LINE_LED2
+    LINE_BUTTON_USER
 
-PAL_USE_WAIT
-PAL_USE_CALLBACKS
+PORTAB_BUTTON_PRESSED
+    PAL_HIGH
+
+PORTAB_LINE_LED1
+    LINE_ARD_D13
+
+PORTAB_LINE_LED2
+    LINE_LED4
+
+PAL_USE_WAIT -> TRUE
+PAL_USE_CALLBACKS -> TRUE
