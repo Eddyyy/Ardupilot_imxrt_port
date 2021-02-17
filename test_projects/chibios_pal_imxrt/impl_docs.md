@@ -66,13 +66,14 @@ or
     pal_lld_toggleline
 
 PORTAB_LINE_BUTTON
-    LINE_BUTTON_USER
+    LINE_BUTTON_USER -> from portab.h
 
 PORTAB_BUTTON_PRESSED
-    PAL_HIGH
+    PAL_HIGH -> from portab.h
 
 PORTAB_LINE_LED1
-    LINE_ARD_D13
+    LINE_ARD_D13 -> from portab.h
+        PAL_LINE(GPIOA, 12U) -> from board.h
 
 PORTAB_LINE_LED2
     LINE_LED4
