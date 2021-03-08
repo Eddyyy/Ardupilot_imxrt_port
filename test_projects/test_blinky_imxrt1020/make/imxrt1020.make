@@ -49,7 +49,7 @@ endif
 
 # Enable this if you want to see the full log while compiling.
 ifeq ($(USE_VERBOSE_COMPILE),)
-  USE_VERBOSE_COMPILE = no
+  USE_VERBOSE_COMPILE = yes
 endif
 
 #
@@ -144,8 +144,8 @@ INCDIR = $(ALLINC) $(TESTINC) $(CONFDIR)
 # -mcpu=
 MCU  = cortex-m7
 
-# TOOLCHN_DIR = /home/eddy/Documents/kicad_projects/advanced_flight_controller/gcc-arm-none-eabi-9-2019-q4-major/bin
-TOOLCHN_DIR = /home/ed/Documents/kicad_projects/advanced_flight_controller/gcc-arm-none-eabi-9-2019-q4-major/bin
+TOOLCHN_DIR = /home/eddy/Documents/kicad_projects/advanced_flight_controller/gcc-arm-none-eabi-9-2019-q4-major/bin
+# TOOLCHN_DIR = /home/ed/Documents/kicad_projects/advanced_flight_controller/gcc-arm-none-eabi-9-2019-q4-major/bin
 #TRGT = arm-elf-
 TRGT = $(TOOLCHN_DIR)/arm-none-eabi-
 CC   = $(TRGT)gcc
