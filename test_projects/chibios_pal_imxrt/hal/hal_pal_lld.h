@@ -192,7 +192,7 @@ typedef uint32_t iopadid_t;
  *
  * @notapi
  */
-#define pal_lld_setport(port, bits) ((port)->BSRR.DR_SET = (uint32_t)bits
+#define pal_lld_setport(port, bits) ((port)->DR_SET = (uint32_t)bits
 
 /**
  * @brief   Clears a bits mask on a I/O port.
@@ -205,7 +205,7 @@ typedef uint32_t iopadid_t;
  *
  * @notapi
  */
-#define pal_lld_clearport(port, bits) ((port)->BSRR.DR_CLEAR = (uint32_t)bits
+#define pal_lld_clearport(port, bits) ((port)->DR_CLEAR = (uint32_t)bits
 
 /**
  * @brief   Toggles a bits mask on a I/O port.
@@ -218,7 +218,7 @@ typedef uint32_t iopadid_t;
  *
  * @notapi
  */
-#define pal_lld_toggleport(port, bits) ((port)->BSRR.DR_TOGGLE = (uint32_t)bits
+#define pal_lld_toggleport(port, bits) ((port)->DR_TOGGLE = (uint32_t)bits
 
 /**
  * @brief   Reads a group of bits.
@@ -251,8 +251,8 @@ typedef uint32_t iopadid_t;
  */
 #define pal_lld_writegroup(port, mask, offset, bits)                        \
   do {                                                                      \
-      (port)->BSRR.DR_CLEAR = ((~(uint32_t)(bits) & (uint32_t)(mask)) << (offset)); \
-      (port)->BSRR.DR_SET = (((uint32_t)(bits) & (uint32_t)(mask)) << (offset)); \
+      (port)->DR_CLEAR = ((~(uint32_t)(bits) & (uint32_t)(mask)) << (offset)); \
+      (port)->DR_SET = (((uint32_t)(bits) & (uint32_t)(mask)) << (offset)); \
   } while (false)
 
 /**

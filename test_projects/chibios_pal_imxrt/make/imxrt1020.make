@@ -91,7 +91,7 @@ endif
 #
 
 # Define project name here
-PROJECT = test_blinky
+PROJECT = test_hal
 
 # Imported source files and paths
 # CONFDIR  := ./src/board
