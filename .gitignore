@@ -39,3 +39,9 @@ docs/chip_docs/*
 
 # Doc compiled files
 docs/development/*.html
+
+# Local ChibiOS pull
+test_projects/chibios_pal_imxrt/ChibiOS/
+
+# Cscopes database files
+cscopes/
