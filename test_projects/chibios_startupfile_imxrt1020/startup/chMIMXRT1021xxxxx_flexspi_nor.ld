@@ -20,31 +20,41 @@
  * MIMXRT1021xxxx FlexSPI nor setup
  *
  * RAM0 - BSS, Data, Heap?
- * RAM3 Main Stack, Process Stack, NOCACHE, ETH?
+ * RAM1 Main Stack, Process Stack, NOCACHE, ETH?
+ *
+ * FLASH0 - text?
+ * FLASH1 - interrupts
+ * FLASH2 - flash_config
+ * FLASH3 - ivt
  *
  * Static FlexRAM Config (see application note AN12077)
  * Fuse Config Val (0x6D0) -> 0b0110
  * IOMUXC_GPR_GPR17 (FLEXRAM_BANK_CFG) -> 0b0101011110100101
  * BSS in OCRAM since multiple master access (e.g. DMA) has greater is more efficient
+ *
+ * flash, flexSPI config
+ * 4k+4k+1k+8183k=8MBytes (amount qspiflash on MIMXRT1021EVK)
  */
 
-/* TODO Change to work against IMXRT1020 rather than STM32F746xG */
+/* TODO Change to work against IMXRT1020 rather than STM32F746xG 
+ * TODO Using page 241 of IMXRT1020RM, find out how to add IVT, boot_data and flash_config
+ * */
 MEMORY
 {
-    flash0 (RX) : org = 0x08000000, len = 1M        /* Flash as AXIM (writable) */
-    flash1 (RX) : org = 0x00200000, len = 1M        /* Flash as ITCM */
-    flash2 (RX) : org = 0x00000000, len = 0
-    flash3 (RX) : org = 0x00000000, len = 0
+    flash0 (RX) : org = 0x60002400, len = 8183k     /* text 8M-9k */
+    flash1 (RX) : org = 0x60002000, len = 1k        /* interrupts */
+    flash2 (RX) : org = 0x60000000, len = 4k        /* flash_config */
+    flash3 (RX) : org = 0x60001000, len = 4k        /* ivt */
     flash4 (RX) : org = 0x00000000, len = 0
     flash5 (RX) : org = 0x00000000, len = 0
     flash6 (RX) : org = 0x00000000, len = 0
     flash7 (RX) : org = 0x00000000, len = 0
     ram0   (wx) : org = 0x20200000, len = 160k      /* OCRAM */
     ram1   (wx) : org = 0x20000000, len = 64k       /* DTCM-RAM */
-    ram6   (wx) : org = 0x00000000, len = 32k       /* ITCM-RAM */
-    ram6   (wx) : org = 0x00000000, len = 0
-    ram6   (wx) : org = 0x00000000, len = 0
-    ram6   (wx) : org = 0x00000000, len = 0
+    ram2   (wx) : org = 0x00000000, len = 32k       /* ITCM-RAM */
+    ram3   (wx) : org = 0x00000000, len = 0
+    ram4   (wx) : org = 0x00000000, len = 0
+    ram5   (wx) : org = 0x00000000, len = 0
     ram6   (wx) : org = 0x00000000, len = 0
     ram7   (wx) : org = 0x00000000, len = 0
 }
@@ -57,11 +67,11 @@ REGION_ALIAS("VECTORS_FLASH", flash1);
 REGION_ALIAS("VECTORS_FLASH_LMA", flash0);
 
 /* Flash region to be used for constructors and destructors.*/
-REGION_ALIAS("XTORS_FLASH", flash1);
+REGION_ALIAS("XTORS_FLASH", flash0);
 REGION_ALIAS("XTORS_FLASH_LMA", flash0);
 
 /* Flash region to be used for code text.*/
-REGION_ALIAS("TEXT_FLASH", flash1);
+REGION_ALIAS("TEXT_FLASH", flash0);
 REGION_ALIAS("TEXT_FLASH_LMA", flash0);
 
 /* Flash region to be used for read only data.*/
@@ -69,7 +79,7 @@ REGION_ALIAS("RODATA_FLASH", flash0);
 REGION_ALIAS("RODATA_FLASH_LMA", flash0);
 
 /* Flash region to be used for various.*/
-REGION_ALIAS("VARIOUS_FLASH", flash1);
+REGION_ALIAS("VARIOUS_FLASH", flash0);
 REGION_ALIAS("VARIOUS_FLASH_LMA", flash0);
 
 /* Flash region to be used for RAM(n) initialization data.*/
@@ -77,18 +87,18 @@ REGION_ALIAS("RAM_INIT_FLASH_LMA", flash0);
 
 /* RAM region to be used for Main stack. This stack accommodates the processing
    of all exceptions and interrupts.*/
-REGION_ALIAS("MAIN_STACK_RAM", ram3);
+REGION_ALIAS("MAIN_STACK_RAM", ram1);
 
 /* RAM region to be used for the process stack. This is the stack used by
    the main() function.*/
-REGION_ALIAS("PROCESS_STACK_RAM", ram3);
+REGION_ALIAS("PROCESS_STACK_RAM", ram1);
 
 /* RAM region to be used for data segment.*/
 REGION_ALIAS("DATA_RAM", ram0);
 REGION_ALIAS("DATA_RAM_LMA", flash0);
 
 /* RAM region to be used for BSS segment.*/
-REGION_ALIAS("BSS_RAM", ram3);
+REGION_ALIAS("BSS_RAM", ram0);
 
 /* RAM region to be used for the default heap.*/
 REGION_ALIAS("HEAP_RAM", ram0);
@@ -101,10 +111,10 @@ INCLUDE rules_stacks.ld
 /*===========================================================================*/
 
 /* RAM region to be used for nocache segment.*/
-REGION_ALIAS("NOCACHE_RAM", ram3);
+REGION_ALIAS("NOCACHE_RAM", ram1);
 
 /* RAM region to be used for eth segment.*/
-REGION_ALIAS("ETH_RAM", ram3);
+REGION_ALIAS("ETH_RAM", ram1);
 
 SECTIONS
 {
