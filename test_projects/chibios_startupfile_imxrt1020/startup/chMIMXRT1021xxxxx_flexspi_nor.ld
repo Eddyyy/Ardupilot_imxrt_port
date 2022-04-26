@@ -108,8 +108,23 @@ REGION_ALIAS("HEAP_RAM", ram0);
 INCLUDE rules_stacks.ld
 
 /*===========================================================================*/
-/* Custom sections for STM32F7xx.                                            */
+/* Custom sections for IMXRT1020.                                            */
 /*===========================================================================*/
+
+/*
+ Idea for boot data definition
+SECTIONS 
+{
+  	.text.headers : {
+		KEEP(*(.flashconfig))
+		FILL(0xFF)
+		. = ORIGIN(FLASH) + 0x1000;
+		KEEP(*(.ivt))
+		KEEP(*(.bootdata))
+		. = ALIGN(1024);
+	} > FLASH
+}
+ */
 
 /* RAM region to be used for nocache segment.*/
 REGION_ALIAS("NOCACHE_RAM", ram1);
