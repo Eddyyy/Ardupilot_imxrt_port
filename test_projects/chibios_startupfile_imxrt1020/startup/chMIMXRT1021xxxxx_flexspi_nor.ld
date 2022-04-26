@@ -33,16 +33,17 @@
  * BSS in OCRAM since multiple master access (e.g. DMA) has greater is more efficient
  *
  * flash, flexSPI config
- * 4k+4k+1k+8183k=8MBytes (amount qspiflash on MIMXRT1021EVK)
+ * 4k+4k+2k+8182k=8MBytes (amount qspiflash on MIMXRT1021EVK)
  */
 
 /* TODO Change to work against IMXRT1020 rather than STM32F746xG 
  * TODO Using page 241 of IMXRT1020RM, find out how to add IVT, boot_data and flash_config
+ * TODO Need to define __core_init
  * */
 MEMORY
 {
-    flash0 (RX) : org = 0x60002400, len = 8183k     /* text 8M-9k */
-    flash1 (RX) : org = 0x60002000, len = 1k        /* interrupts */
+    flash0 (RX) : org = 0x60002400, len = 8182k     /* text 8M-10k */
+    flash1 (RX) : org = 0x60002000, len = 2k        /* interrupts */
     flash2 (RX) : org = 0x60000000, len = 4k        /* flash_config */
     flash3 (RX) : org = 0x60001000, len = 4k        /* ivt */
     flash4 (RX) : org = 0x00000000, len = 0
@@ -62,9 +63,9 @@ MEMORY
 /* For each data/text section two region are defined, a virtual region
    and a load region (_LMA suffix).*/
 
-/* Flash region to be used for exception vectors.*/
-REGION_ALIAS("VECTORS_FLASH", flash1);
-REGION_ALIAS("VECTORS_FLASH_LMA", flash0);
+/* Flash region to be used for exception vectors.(interrupts) */
+REGION_ALIAS("VECTORS_FLASH", flash0);
+REGION_ALIAS("VECTORS_FLASH_LMA", flash1);
 
 /* Flash region to be used for constructors and destructors.*/
 REGION_ALIAS("XTORS_FLASH", flash0);
