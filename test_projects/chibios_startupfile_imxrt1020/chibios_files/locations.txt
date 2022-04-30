@@ -1,0 +1,3 @@
+
+startup_structures.[hc]:
+ChibiOS/os/common/startup/ARMCMx/devices/
