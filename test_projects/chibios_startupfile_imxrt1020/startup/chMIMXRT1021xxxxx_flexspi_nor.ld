@@ -41,7 +41,7 @@
 
 /* TODO Change to work against IMXRT1020 rather than STM32F746xG 
  * TODO Using page 241 of IMXRT1020RM, find out how to add IVT, boot_data and flash_config
- * TODO Need to define __core_init
+ * TODO Need to define __core_init, should also include above Todo
  * */
 MEMORY
 {
