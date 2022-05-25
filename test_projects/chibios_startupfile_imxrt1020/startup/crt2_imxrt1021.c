@@ -7,7 +7,30 @@ void __core_init(void) {
 #endif
 
     // Need to add 
+#if defined(__IMXRT1062__)
+	IOMUXC_GPR_GPR17 = (uint32_t)&_flexram_bank_config;
+	IOMUXC_GPR_GPR16 = 0x00200007;
+	IOMUXC_GPR_GPR14 = 0x00AA0000;
+
+	__asm__ volatile("dsb":::"memory");
+	__asm__ volatile("isb":::"memory");
+
+#elif defined(__IMXRT1021__)
+	// IOMUXC_GPR_GPR17 = (uint32_t)&_flexram_bank_config;
+	IOMUXC_GPR_GPR17 = 0x000057A5;
+	IOMUXC_GPR_GPR16 = 0x00200007;
+	IOMUXC_GPR_GPR14 = 0x00AA0000;
+
+	__asm__ volatile("dsb":::"memory");
+	__asm__ volatile("isb":::"memory");
+#endif
+
 }
+
+void __early_init(void) {}
+
+void __late_init(void) {}
+
 
 /*
  * Adding bootdata example from pjrc teensy
@@ -22,9 +45,9 @@ extern unsigned long _flashimagelen;
 
 __attribute__ ((section(".bootdata"), used))
 const uint32_t BootData[3] = {
-	0x60000000,
-	(uint32_t)&_flashimagelen,
-	0
+	0x60000000, // Flash base -> boot start location
+	(uint32_t)&_flashimagelen, // flash size?
+	0 // Plugin flag
 };
 
 

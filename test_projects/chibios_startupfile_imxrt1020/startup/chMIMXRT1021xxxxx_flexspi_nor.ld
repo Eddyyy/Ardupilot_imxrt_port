@@ -29,14 +29,14 @@
  *
  * Static FlexRAM Config (see application note AN12077)
  * Fuse Config Val (0x6D0) -> 0b0110
- * IOMUXC_GPR_GPR17 (FLEXRAM_BANK_CFG) -> 0b0101011110100101
- * IOMUXC_GPR_GPR16 -> 0b0b1000000000000000000111
+ * IOMUXC_GPR_GPR17 (FLEXRAM_BANK_CFG) -> 0b0101011110100101; (0x000057A5)
+ * IOMUXC_GPR_GPR16 -> 0b0b1000000000000000000111; (0x00200007)
  * IOMUXC_GPR_GPR16_INIT_ITCM_EN_MASK and IOMUXC_GPR_GPR16_INIT_DTCM_EN_MASK not documented in reference manual
  * (^ IOMUXC_GPR_GPR16 && 0b11)
- * BSS in OCRAM since multiple master access (e.g. DMA) has greater is more efficient
+ * BSS in OCRAM since multiple master access (e.g. DMA) is more efficient
  *
  * flash, flexSPI config
- * 4k+4k+2k+8182k=8MBytes (amount qspiflash on MIMXRT1021EVK)
+ * 4k+4k+2k+8182k=8MBytes (amount of qspiflash on MIMXRT1021EVK)
  */
 
 /* TODO Change to work against IMXRT1020 rather than STM32F746xG 
