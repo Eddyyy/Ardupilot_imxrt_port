@@ -105,19 +105,24 @@ uint32_t FlexSPI_NOR_Config[128] = {
 
 	0x00000000,		// controllerMiscOption
                     // ->               0x040
+#if defined(MIMXRT1021EVK_EVAL_BRD)
+	0x00060401,		// lutCustomSeqEnable,serialClkFreq,sflashPadType,deviceType
+                    // ->               0x044 (100Mhz serialClkFreq)
+#else
 	0x00080401,		// lutCustomSeqEnable,serialClkFreq,sflashPadType,deviceType
-                    // ->               0x044
+                    // ->               0x044 (30Mhz serialClkFreq)
+#endif
 	0,			    // reserved
 	0,			    // reserved
 
 #if defined(ARDUINO_TEENSY40)
-	0x00200000,		// sflashA1Size			0x50
+	0x00200000,		// sflashA1Size			0x050
 #elif defined(ARDUINO_TEENSY41)
-	0x00800000,		// sflashA1Size			0x50
+	0x00800000,		// sflashA1Size			0x050
 #elif defined(ARDUINO_TEENSY_MICROMOD)
-	0x01000000,		// sflashA1Size			0x50
+	0x01000000,		// sflashA1Size			0x050
 #elif defined(MIMXRT1021EVK_EVAL_BRD)
-	0x00100000,		// sflashA1Size			0x50
+	0x00800000,		// sflashA1Size			0x050
 #else
 #error "Unknow flash chip size";
 #endif
@@ -137,11 +142,14 @@ uint32_t FlexSPI_NOR_Config[128] = {
                     // ->               0x07C
 
 	0x0A1804EB,		// lookupTable[0]		0x080
+// FLEXSPI_LUT_SEQ(CMD_SDR, FLEXSPI_2PAD, 0xEB, RADDR_SDR, FLEXSPI_4PAD, 0x18)
 	0x26043206,		// lookupTable[1]
+// FLEXSPI_LUT_SEQ(DUMMY_SDR, FLEXSPI_4PAD, 0x06, READ_SDR, FLEXSPI_4PAD, 0x04)
 	0,			    // lookupTable[2]
 	0,			    // lookupTable[3]
 
 	0x24040405,		// lookupTable[4]		0x090
+// FLEXSPI_LUT_SEQ(CMD_SDR, FLEXSPI_1PAD, 0x05, READ_SDR, FLEXSPI_4PAD, 0x04)
 	0,			    // lookupTable[5]
 	0,			    // lookupTable[6]
 	0,			    // lookupTable[7]
@@ -152,6 +160,7 @@ uint32_t FlexSPI_NOR_Config[128] = {
 	0,			    // lookupTable[11]
 
 	0x00000406,		// lookupTable[12]		0x0B0
+// FLEXSPI_LUT_SEQ(CMD_SDR, FLEXSPI_1PAD, 0x06, STOP, FLEXSPI_1PAD, 0x0)
 	0,			    // lookupTable[13]
 	0,			    // lookupTable[14]
 	0,			    // lookupTable[15]
@@ -162,6 +171,7 @@ uint32_t FlexSPI_NOR_Config[128] = {
 	0,			    // lookupTable[19]
 
 	0x08180420,		// lookupTable[20]		0x0D0
+// FLEXSPI_LUT_SEQ(CMD_SDR, FLEXSPI_1PAD, 0x20, RADDR_SDR, FLEXSPI_1PAD, 0x18)
 	0,			    // lookupTable[21]
 	0,			    // lookupTable[22]
 	0,			    // lookupTable[23]
@@ -177,12 +187,15 @@ uint32_t FlexSPI_NOR_Config[128] = {
 	0,			    // lookupTable[31]
 
 	0x081804D8,		// lookupTable[32]		0x100
+// FLEXSPI_LUT_SEQ(CMD_SDR, FLEXSPI_1PAD, 0xD8, RADDR_SDR, FLEXSPI_1PAD, 0x018)
 	0,			    // lookupTable[33]
 	0,			    // lookupTable[34]
 	0,			    // lookupTable[35]
 
 	0x08180402,		// lookupTable[36]		0x110
+// FLEXSPI_LUT_SEQ(CMD_SDR, FLEXSPI_1PAD, 0x20, RADDR_SDR, FLEXSPI_1PAD, 0x18)
 	0x00002004,		// lookupTable[37]
+// FLEXSPI_LUT_SEQ(WRITE_SDR, FLEXSPI_1PAD, 0x04, STOP, FLEXSPI_1PAD, 0x0)
 	0,			    // lookupTable[38]
 	0,			    // lookupTable[39]
 
@@ -192,6 +205,7 @@ uint32_t FlexSPI_NOR_Config[128] = {
 	0,			    // lookupTable[43]
 
 	0x00000460,		// lookupTable[44]		0x130
+// FLEXSPI_LUT_SEQ(CMD_SDR, FLEXSPI_1PAD, 0x60, STOP, FLEXSPI_1PAD, 0x0)
 	0,			    // lookupTable[45]
 	0,			    // lookupTable[46]
 	0,			    // lookupTable[47]
@@ -236,7 +250,8 @@ uint32_t FlexSPI_NOR_Config[128] = {
 	0,			    // reserved
 	0,			    // reserved
 
-	// 64 byte Serial NOR configuration block, 8.6.3.2, page 346
+	// 64 byte Serial NOR configuration block, 8.6.3.2, page 346 (IMXRT1060)
+	// 64 byte Serial NOR configuration block, 9.6.3.2, page 211 (IMXRT1020)
 
 	256,			// pageSize			0x1C0
 	4096,			// sectorSize

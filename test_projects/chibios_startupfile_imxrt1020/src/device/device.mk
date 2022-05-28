@@ -1,0 +1,10 @@
+DEVICESRC = ./src/device/system_MIMXRT1021.c \
+
+DEVICEINC = ./src/device
+
+DEVICEASM = 
+
+
+ALLCSRC += $(DEVICESRC)
+ALLINC += $(DEVICEINC)
+ALLXASMSRC += $(DEVICEASM)
