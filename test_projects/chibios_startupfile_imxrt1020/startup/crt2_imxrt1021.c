@@ -1,11 +1,6 @@
 
 void __core_init(void) {
 
-#if CORTEX_MODEL == 7
-    SCB_EnableICache();
-    SCB_EnableDCache();
-#endif
-
     // Need to add 
 #if defined(__IMXRT1062__)
 	IOMUXC_GPR_GPR17 = (uint32_t)&_flexram_bank_config;
@@ -19,10 +14,15 @@ void __core_init(void) {
 	// IOMUXC_GPR_GPR17 = (uint32_t)&_flexram_bank_config;
 	IOMUXC_GPR_GPR17 = 0x000057A5;
 	IOMUXC_GPR_GPR16 = 0x00200007;
-	IOMUXC_GPR_GPR14 = 0x00AA0000;
+	IOMUXC_GPR_GPR14 = 0x00760000;
 
 	__asm__ volatile("dsb":::"memory");
 	__asm__ volatile("isb":::"memory");
+#endif
+
+#if CORTEX_MODEL == 7
+    SCB_EnableICache();
+    SCB_EnableDCache();
 #endif
 
 }
@@ -141,90 +141,109 @@ uint32_t FlexSPI_NOR_Config[128] = {
 	0x00000000,		// busyBitPolarity,busyOffset
                     // ->               0x07C
 
+    // See IMXRT1020RM FlexSPI section 26.7.7 Look Up Table page 1487
+    // and FlexSPI section 26.7.8 Programmable Sequence Engine page 1498
+
+    // LUT Index 0 Read
 	0x0A1804EB,		// lookupTable[0]		0x080
-// FLEXSPI_LUT_SEQ(CMD_SDR, FLEXSPI_2PAD, 0xEB, RADDR_SDR, FLEXSPI_4PAD, 0x18)
+    // FLEXSPI_LUT_SEQ(CMD_SDR, FLEXSPI_2PAD, 0xEB, RADDR_SDR, FLEXSPI_4PAD, 0x18)
 	0x26043206,		// lookupTable[1]
-// FLEXSPI_LUT_SEQ(DUMMY_SDR, FLEXSPI_4PAD, 0x06, READ_SDR, FLEXSPI_4PAD, 0x04)
+    // FLEXSPI_LUT_SEQ(DUMMY_SDR, FLEXSPI_4PAD, 0x06, READ_SDR, FLEXSPI_4PAD, 0x04)
 	0,			    // lookupTable[2]
 	0,			    // lookupTable[3]
 
+    // LUT Index 1 ReadStatus
 	0x24040405,		// lookupTable[4]		0x090
-// FLEXSPI_LUT_SEQ(CMD_SDR, FLEXSPI_1PAD, 0x05, READ_SDR, FLEXSPI_4PAD, 0x04)
+    // FLEXSPI_LUT_SEQ(CMD_SDR, FLEXSPI_1PAD, 0x05, READ_SDR, FLEXSPI_4PAD, 0x04)
 	0,			    // lookupTable[5]
 	0,			    // lookupTable[6]
 	0,			    // lookupTable[7]
 
+    // LUT Index 2 Reserved
 	0,			    // lookupTable[8]		0x0A0
 	0,			    // lookupTable[9]
 	0,			    // lookupTable[10]
 	0,			    // lookupTable[11]
 
+    // LUT Index 3 WriteEnable
 	0x00000406,		// lookupTable[12]		0x0B0
-// FLEXSPI_LUT_SEQ(CMD_SDR, FLEXSPI_1PAD, 0x06, STOP, FLEXSPI_1PAD, 0x0)
+    // FLEXSPI_LUT_SEQ(CMD_SDR, FLEXSPI_1PAD, 0x06, STOP, FLEXSPI_1PAD, 0x0)
 	0,			    // lookupTable[13]
 	0,			    // lookupTable[14]
 	0,			    // lookupTable[15]
 
+    // LUT Index 4 Reserved
 	0,			    // lookupTable[16]		0x0C0
 	0,			    // lookupTable[17]
 	0,			    // lookupTable[18]
 	0,			    // lookupTable[19]
 
+    // LUT Index 5 EraseSector
 	0x08180420,		// lookupTable[20]		0x0D0
-// FLEXSPI_LUT_SEQ(CMD_SDR, FLEXSPI_1PAD, 0x20, RADDR_SDR, FLEXSPI_1PAD, 0x18)
+    // FLEXSPI_LUT_SEQ(CMD_SDR, FLEXSPI_1PAD, 0x20, RADDR_SDR, FLEXSPI_1PAD, 0x18)
 	0,			    // lookupTable[21]
 	0,			    // lookupTable[22]
 	0,			    // lookupTable[23]
 
+    // LUT Index 6 Reserved
 	0,			    // lookupTable[24]		0x0E0
 	0,			    // lookupTable[25]
 	0,			    // lookupTable[26]
 	0,			    // lookupTable[27]
 
+    // LUT Index 7 Reserved
 	0,			    // lookupTable[28]		0x0F0
 	0,			    // lookupTable[29]
 	0,			    // lookupTable[30]
 	0,			    // lookupTable[31]
 
+    // LUT Index 8 Reserved
 	0x081804D8,		// lookupTable[32]		0x100
-// FLEXSPI_LUT_SEQ(CMD_SDR, FLEXSPI_1PAD, 0xD8, RADDR_SDR, FLEXSPI_1PAD, 0x018)
+    // FLEXSPI_LUT_SEQ(CMD_SDR, FLEXSPI_1PAD, 0xD8, RADDR_SDR, FLEXSPI_1PAD, 0x018)
 	0,			    // lookupTable[33]
 	0,			    // lookupTable[34]
 	0,			    // lookupTable[35]
 
+    // LUT Index 9 PageProgram
 	0x08180402,		// lookupTable[36]		0x110
-// FLEXSPI_LUT_SEQ(CMD_SDR, FLEXSPI_1PAD, 0x20, RADDR_SDR, FLEXSPI_1PAD, 0x18)
+    // FLEXSPI_LUT_SEQ(CMD_SDR, FLEXSPI_1PAD, 0x20, RADDR_SDR, FLEXSPI_1PAD, 0x18)
 	0x00002004,		// lookupTable[37]
-// FLEXSPI_LUT_SEQ(WRITE_SDR, FLEXSPI_1PAD, 0x04, STOP, FLEXSPI_1PAD, 0x0)
+    // FLEXSPI_LUT_SEQ(WRITE_SDR, FLEXSPI_1PAD, 0x04, STOP, FLEXSPI_1PAD, 0x0)
 	0,			    // lookupTable[38]
 	0,			    // lookupTable[39]
 
+    // LUT Index 10 Reserved
 	0,			    // lookupTable[40]		0x120
 	0,			    // lookupTable[41]
 	0,			    // lookupTable[42]
 	0,			    // lookupTable[43]
 
+    // LUT Index 11 ChipErase
 	0x00000460,		// lookupTable[44]		0x130
-// FLEXSPI_LUT_SEQ(CMD_SDR, FLEXSPI_1PAD, 0x60, STOP, FLEXSPI_1PAD, 0x0)
+    // FLEXSPI_LUT_SEQ(CMD_SDR, FLEXSPI_1PAD, 0x60, STOP, FLEXSPI_1PAD, 0x0)
 	0,			    // lookupTable[45]
 	0,			    // lookupTable[46]
 	0,			    // lookupTable[47]
 
+    // LUT Index 12 Reserved
 	0,			    // lookupTable[48]		0x140
 	0,			    // lookupTable[49]
 	0,			    // lookupTable[50]
 	0,			    // lookupTable[51]
 
+    // LUT Index 13 Reserved (NOR_CMD_LUT_SE Q_IDX_READ_SFDP)
 	0,			    // lookupTable[52]		0x150
 	0,			    // lookupTable[53]
 	0,			    // lookupTable[54]
 	0,			    // lookupTable[55]
 
+    // LUT Index 14 Reserved (NOR_CMD_LUT_SE Q_IDX_RESTORE_N OCMD)
 	0,			    // lookupTable[56]		0x160
 	0,			    // lookupTable[57]
 	0,			    // lookupTable[58]
 	0,			    // lookupTable[59]
 
+    // LUT Index 15 Dummy
 	0,			    // lookupTable[60]		0x170
 	0,			    // lookupTable[61]
 	0,			    // lookupTable[62]

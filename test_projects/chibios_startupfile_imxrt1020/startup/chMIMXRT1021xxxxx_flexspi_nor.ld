@@ -33,6 +33,8 @@
  * IOMUXC_GPR_GPR16 -> 0b0b1000000000000000000111; (0x00200007)
  * IOMUXC_GPR_GPR16_INIT_ITCM_EN_MASK and IOMUXC_GPR_GPR16_INIT_DTCM_EN_MASK not documented in reference manual
  * (^ IOMUXC_GPR_GPR16 && 0b11)
+ * IOMUXC_GPR_GPR14 -> CM7_CFGITCMSZ, 0110; CM7_CFGDTCMSZ, 0111; (0x00760000)
+ * ITCM and DTCM config for CM7
  * BSS in OCRAM since multiple master access (e.g. DMA) is more efficient
  *
  * flash, flexSPI config
