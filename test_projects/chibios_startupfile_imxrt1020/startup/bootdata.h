@@ -1,4 +1,6 @@
 
+#include <MIMXRT1021.h>
+
 /* Lookup table related defintions */
 #define CMD_INDEX_READ 0
 #define CMD_INDEX_READSTATUS 1

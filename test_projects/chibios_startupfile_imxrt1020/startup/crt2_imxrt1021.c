@@ -72,6 +72,15 @@ const uint32_t ImageVectorTable[8] = {
 */
 /*
 
+__attribute__ ((section(".dcd"), used))
+const uint32_t DeviceConfurationData[128] = {
+    0x410000D2,     // Version,Length,Tag   0x00 (Header)
+
+}
+
+*/
+/*
+
 // Since uint32_t is 32bits the 1 value has 4 bytes (as in reference manual)
 __attribute__ ((section(".flashconfig"), used))
 uint32_t FlexSPI_NOR_Config[128] = {
