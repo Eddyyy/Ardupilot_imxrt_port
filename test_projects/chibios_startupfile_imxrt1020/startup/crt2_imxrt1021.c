@@ -59,14 +59,14 @@ const uint32_t hab_csf[768];	// placeholder for HAB signature
 
 __attribute__ ((section(".ivt"), used))
 const uint32_t ImageVectorTable[8] = {
-	0x432000D1,		// header
+	0x432000D1,		        // header
 	(uint32_t)&ResetHandler,// program entry
-	0,			// reserved
-	0,			// dcd
-	(uint32_t)BootData,	// abs address of boot data
+	0,			            // reserved
+	DeviceConfurationData,	// dcd
+	(uint32_t)BootData,	    // abs address of boot data
 	(uint32_t)ImageVectorTable, // self
-	(uint32_t)hab_csf,	// command sequence file
-	0			// reserved
+	(uint32_t)hab_csf,	    // command sequence file
+	0			            // reserved
 };
 
 */
@@ -74,8 +74,12 @@ const uint32_t ImageVectorTable[8] = {
 
 __attribute__ ((section(".dcd"), used))
 const uint32_t DeviceConfurationData[128] = {
-    0x410000D2,     // Version,Length,Tag   0x00 (Header)
+    0x410000D2,         // Version,Length,Tag   (Header)
 
+    0xCC001C04,         // Write CMD, Length, Location Byte Size
+    IOMUXC_GPR_GPR17,0x000057A5,    // Address,Value
+    IOMUXC_GPR_GPR16,0x00200007,    // ...
+    IOMUXC_GPR_GPR14,0x00760000,
 }
 
 */
