@@ -1,4 +1,11 @@
 
+#include <stdint.h>
+#include "MIMXRT1021.h"
+
+extern void ResetHandler(void);
+extern unsigned long _estack;
+extern unsigned long _flashimagelen;
+
 void __core_init(void) {
 
     // Need to add 
@@ -16,8 +23,10 @@ void __core_init(void) {
 	IOMUXC_GPR_GPR16 = 0x00200007;
 	IOMUXC_GPR_GPR14 = 0x00760000;
 
-	__asm__ volatile("dsb":::"memory");
-	__asm__ volatile("isb":::"memory");
+    // Used in this format elsewhere in ChibiOS
+    // (/os/hal/ports/common/ARMCMx/cache.h)
+    __DSB();
+    __ISB();
 #endif
 
 #if CORTEX_MODEL == 7
@@ -32,58 +41,43 @@ void __early_init(void) {}
 void __late_init(void) {}
 
 
-/*
- * Adding bootdata example from pjrc teensy
 
-#include <stdint.h>
-
-extern void ResetHandler(void);
-extern unsigned long _estack;
-extern unsigned long _flashimagelen;
-
-*/
-/*
 __attribute__ ((section(".bootdata"), used))
 const uint32_t BootData[3] = {
 	0x60000000, // Flash base -> boot start location
 	(uint32_t)&_flashimagelen, // flash size?
 	0 // Plugin flag
 };
-*/
-/*
+
 
 __attribute__ ((section(".csf"), used))
 const uint32_t hab_csf[768];	// placeholder for HAB signature
-*/
-/*
+
 
 __attribute__ ((section(".ivt"), used))
 const uint32_t ImageVectorTable[8] = {
 	0x432000D1,		        // header
 	(uint32_t)&ResetHandler,// program entry
 	0,			            // reserved
-	DeviceConfurationData,	// dcd
+	(uint32_t)DeviceConfigurationData,	// dcd
 	(uint32_t)BootData,	    // abs address of boot data
 	(uint32_t)ImageVectorTable, // self
 	(uint32_t)hab_csf,	    // command sequence file
 	0			            // reserved
 };
 
-*/
-/*
 
 __attribute__ ((section(".dcd"), used))
-const uint32_t DeviceConfurationData[128] = {
-    0x410000D2,         // Version,Length,Tag   (Header)
+const uint32_t DeviceConfigurationData[64] = {
+    0x410008D2,         // Version,Length,Tag   (Header)
 
+    // This may not be needed if core init is safe
     0xCC001C04,         // Write CMD, Length, Location Byte Size
     IOMUXC_GPR_GPR17,0x000057A5,    // Address,Value
     IOMUXC_GPR_GPR16,0x00200007,    // ...
     IOMUXC_GPR_GPR14,0x00760000,
 }
 
-*/
-/*
 
 // Since uint32_t is 32bits the 1 value has 4 bytes (as in reference manual)
 __attribute__ ((section(".flashconfig"), used))
@@ -306,4 +300,3 @@ uint32_t FlexSPI_NOR_Config[128] = {
 	0			    // reserved
 };
 
-*/

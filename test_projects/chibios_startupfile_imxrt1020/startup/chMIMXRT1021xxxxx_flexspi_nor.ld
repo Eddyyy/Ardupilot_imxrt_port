@@ -116,8 +116,7 @@ INCLUDE rules_stacks.ld
 /* Custom sections for IMXRT1020.                                            */
 /*===========================================================================*/
 
-/*
- Idea for boot data definition
+/* Idea for boot data definition */
 SECTIONS 
 {
   	.text.headers : {
@@ -129,7 +128,6 @@ SECTIONS
 		. = ALIGN(1024);
 	} > FLASH
 }
- */
 
 /* RAM region to be used for nocache segment.*/
 REGION_ALIAS("NOCACHE_RAM", ram1);
