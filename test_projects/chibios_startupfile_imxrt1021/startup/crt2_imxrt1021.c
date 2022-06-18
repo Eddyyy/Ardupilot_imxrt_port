@@ -36,9 +36,9 @@ void __core_init(void) {
 
 }
 
-void __early_init(void) {}
+// void __early_init(void) {}
 
-void __late_init(void) {}
+// void __late_init(void) {}
 
 
 
@@ -59,7 +59,7 @@ const uint32_t ImageVectorTable[8] = {
 	0x432000D1,		        // header
 	(uint32_t)&ResetHandler,// program entry
 	0,			            // reserved
-	(uint32_t)DeviceConfigurationData,	// dcd
+	(uint32_t)dcdTable,	// dcd
 	(uint32_t)BootData,	    // abs address of boot data
 	(uint32_t)ImageVectorTable, // self
 	(uint32_t)hab_csf,	    // command sequence file
@@ -68,15 +68,15 @@ const uint32_t ImageVectorTable[8] = {
 
 
 __attribute__ ((section(".dcd"), used))
-const uint32_t DeviceConfigurationData[64] = {
-    0x410008D2,         // Version,Length,Tag   (Header)
+const uint32_t dcdTable[64] = {
+    0x410020D2,         // Version,Length,Tag   (Header)
 
-    // This may not be needed if core init is safe
+    // This may not be needed if __core_init() is safe
     0xCC001C04,         // Write CMD, Length, Location Byte Size
     IOMUXC_GPR_GPR17,0x000057A5,    // Address,Value
     IOMUXC_GPR_GPR16,0x00200007,    // ...
-    IOMUXC_GPR_GPR14,0x00760000,
-}
+    IOMUXC_GPR_GPR14,0x00760000
+};
 
 
 // Since uint32_t is 32bits the 1 value has 4 bytes (as in reference manual)

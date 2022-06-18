@@ -41,10 +41,11 @@
  * 4k+4k+2k+8182k=8MBytes (amount of qspiflash on MIMXRT1021EVK)
  */
 
-/* TODO Change to work against IMXRT1020 rather than STM32F746xG 
+/* 
+ * TODO Change to work against IMXRT1020 rather than STM32F746xG 
  * TODO Using page 241 of IMXRT1020RM, find out how to add IVT, boot_data and flash_config
  * TODO Need to define __core_init, should also include above Todo
- * */
+ */
 MEMORY
 {
     flash0 (RX) : org = 0x60002400, len = 8182k     /* text 8M-10k */
@@ -129,6 +130,7 @@ SECTIONS
 	} > FLASH
 }
 
+
 /* RAM region to be used for nocache segment.*/
 REGION_ALIAS("NOCACHE_RAM", ram1);
 
@@ -168,3 +170,9 @@ INCLUDE rules_data.ld
 
 /* Memory rules inclusion.*/
 INCLUDE rules_memory.ld
+
+/* Flash size in bytes                                   */
+/* _flashimagelen = end flash address - ORIGIN(FLASH);   */
+/* the last item placed in flash is from rules_memory.ld */
+_flashimagelen = __flash0_free__ - ORIGIN(flash2);
+
