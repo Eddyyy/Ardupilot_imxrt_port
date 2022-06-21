@@ -102,12 +102,12 @@ DEPDIR   := ./.dep
 STARTUPLD = ./startup
 include $(STARTUPLD)/startup_MIMXRT1021.mk
 # Library files
-include ./libraries/xip/xip.mk
-include ./libraries/drivers/drivers.mk
-include ./libraries/debug/debug.mk
+# include ./libraries/xip/xip.mk
+# include ./libraries/drivers/drivers.mk
+# include ./libraries/debug/debug.mk
 # MCU Files
-include ./src/board/board.mk
-include ./src/device/device.mk
+# include ./src/board/board.mk
+# include ./src/device/device.mk
 # CMSIS h files
 ALLINC += ./include/CMSIS
 
@@ -115,7 +115,7 @@ ALLINC += ./include/CMSIS
 # ALLASMSRC += ./startup/startup_MIMXRT1021.S
 
 # Define linker script file here
-LDSCRIPT= $(STARTUPLD)/MIMXRT1021xxxxx_flexspi_nor.ld
+LDSCRIPT= $(STARTUPLD)/chMIMXRT1021xxxxx_flexspi_nor.ld
 
 # C sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
