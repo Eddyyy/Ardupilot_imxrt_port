@@ -98,18 +98,31 @@ PROJECT = test_blinky
 BUILDDIR := ./build
 DEPDIR   := ./.dep
 
+# Imported source files and paths
+CHIBIOS = ../../ChibiOS
 # Startup files.
-STARTUPLD = ./startup
-include $(STARTUPLD)/startup_MIMXRT1021.mk
+include $(CHIBIOS)/os/common/startup/ARMCMx/compilers/GCC/mk/startup_MIMXRT1021.mk
 # Library files
-# include ./libraries/xip/xip.mk
 # include ./libraries/drivers/drivers.mk
 # include ./libraries/debug/debug.mk
 # MCU Files
 # include ./src/board/board.mk
 # include ./src/device/device.mk
 # CMSIS h files
-ALLINC += ./include/CMSIS
+# ALLINC += ./include/CMSIS
+
+# HAL-OSAL files (optional).
+#Include $(CHIBIOS)/os/hal/hal.mk
+#Include $(CHIBIOS)/os/hal/templates/platform.mk
+#Include $(CHIBIOS)/os/hal/templates/board/board.mk
+#Include $(CHIBIOS)/os/hal/templates/osal/osal.mk
+# RTOS files (optional).
+#include $(CHIBIOS)/os/rt/rt.mk
+#include $(CHIBIOS)/os/common/ports/ARMv7-M/compilers/GCC/mk/port.mk
+# Other files (optional).
+#include $(CHIBIOS)/os/test/test.mk
+#include $(CHIBIOS)/test/rt/rt_test.mk
+#include $(CHIBIOS)/test/oslib/oslib_test.mk
 
 # Initializsing assembly file
 # ALLASMSRC += ./startup/startup_MIMXRT1021.S
@@ -144,8 +157,8 @@ INCDIR = $(ALLINC) $(TESTINC) $(CONFDIR)
 # -mcpu=
 MCU  = cortex-m7
 
-TOOLCHN_DIR = /home/eddy/Documents/kicad_projects/advanced_flight_controller/gcc-arm-none-eabi-9-2019-q4-major/bin
-# TOOLCHN_DIR = /home/ed/Documents/kicad_projects/advanced_flight_controller/gcc-arm-none-eabi-9-2019-q4-major/bin
+#TOOLCHN_DIR = /home/ed/Documents/arm_gcc/gcc-arm-none-eabi-10.3-2021.10/bin
+TOOLCHN_DIR = /home/ed/Documents/arm_gcc/gcc-arm-none-eabi-10.3-2021.10/bin
 #TRGT = arm-elf-
 TRGT = $(TOOLCHN_DIR)/arm-none-eabi-
 CC   = $(TRGT)gcc
@@ -189,7 +202,8 @@ UDEFS = \
     -DXIP_BOOT_HEADER_ENABLE=1 \
     -DDEBUG \
     -DCPU_MIMXRT1021DAG5A \
-    -DSERIAL_PORT_TYPE_UART=1
+    -DSERIAL_PORT_TYPE_UART=1 \
+    -DMIMXRT1021EVK_EVAL_BRD
 
 
 # Define ASM defines here
@@ -212,5 +226,22 @@ ULIBS =
 # End of user defines
 ##############################################################################
 
-RULESPATH = make
+##############################################################################
+# Common rules
+#
+
+RULESPATH = $(CHIBIOS)/os/common/startup/ARMCMx/compilers/GCC/mk
+#include $(RULESPATH)/arm-none-eabi.mk
 include $(RULESPATH)/rules.mk
+
+#
+# Common rules
+##############################################################################
+
+##############################################################################
+# Custom rules
+#
+
+#
+# Custom rules
+##############################################################################
