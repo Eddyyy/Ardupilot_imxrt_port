@@ -6,11 +6,10 @@
 # Compiler options here.
 ifeq ($(USE_OPT),)
   USE_OPT = \
-    -g \
+    -ggdb \
 	-O0 \
     -ffreestanding \
-    -std=gnu99 \
-    -mapcs-frame
+    -std=gnu99
 endif
 
 # C specific options here (added to USE_OPT).
@@ -94,12 +93,14 @@ endif
 PROJECT = test_blinky
 
 # Imported source files and paths
-# CONFDIR  := ./src/board
+CONFDIR  := ./cfg/imxrt1021
 BUILDDIR := ./build
 DEPDIR   := ./.dep
 
 # Imported source files and paths
 CHIBIOS = ../../ChibiOS
+# Licensing files.
+include $(CHIBIOS)/os/license/license.mk
 # Startup files.
 include $(CHIBIOS)/os/common/startup/ARMCMx/compilers/GCC/mk/startup_MIMXRT1021.mk
 # Library files
@@ -117,8 +118,8 @@ include $(CHIBIOS)/os/common/startup/ARMCMx/compilers/GCC/mk/startup_MIMXRT1021.
 #Include $(CHIBIOS)/os/hal/templates/board/board.mk
 #Include $(CHIBIOS)/os/hal/templates/osal/osal.mk
 # RTOS files (optional).
-#include $(CHIBIOS)/os/rt/rt.mk
-#include $(CHIBIOS)/os/common/ports/ARMv7-M/compilers/GCC/mk/port.mk
+include $(CHIBIOS)/os/rt/rt.mk
+include $(CHIBIOS)/os/common/ports/ARMv7-M/compilers/GCC/mk/port.mk
 # Other files (optional).
 #include $(CHIBIOS)/os/test/test.mk
 #include $(CHIBIOS)/test/rt/rt_test.mk
@@ -128,13 +129,15 @@ include $(CHIBIOS)/os/common/startup/ARMCMx/compilers/GCC/mk/startup_MIMXRT1021.
 # ALLASMSRC += ./startup/startup_MIMXRT1021.S
 
 # Define linker script file here
-LDSCRIPT= $(STARTUPLD)/chMIMXRT1021xxxxx_flexspi_nor.ld
+LDSCRIPT= $(STARTUPLD)/MIMXRT1021xxxxx_flexspi_nor.ld
 
 # C sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
 CSRC = $(ALLCSRC) \
        $(TESTSRC) \
-       ./src/gpio_led_output.c
+       ./src/simple_blink.c
+       # ./src/main.c
+       # ./src/gpio_led_output.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
