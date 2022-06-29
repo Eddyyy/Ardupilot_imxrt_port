@@ -142,14 +142,14 @@
 /**
  * @brief   Kernel hardening level.
  * @details This option is the level of functional-safety checks enabled
- *          in the kerkel. The meaning is:
+ *          in the kernel. The meaning is:
  *          - 0: No checks, maximum performance.
  *          - 1: Reasonable checks.
  *          - 2: All checks.
  *          .
  */
 #if !defined(CH_CFG_HARDENING_LEVEL)
-#define CH_CFG_HARDENING_LEVEL              0
+#define CH_CFG_HARDENING_LEVEL              2
 #endif
 
 /** @} */
