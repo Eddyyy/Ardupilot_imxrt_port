@@ -8,8 +8,9 @@ ifeq ($(USE_OPT),)
   USE_OPT = \
     -ggdb \
 	-O0 \
-    -ffreestanding \
-    -std=gnu99
+    -fomit-frame-pointer \
+    -falign-functions=16
+
 endif
 
 # C specific options here (added to USE_OPT).
@@ -37,7 +38,7 @@ endif
 
 # Enable this if you want link time optimizations (LTO)
 ifeq ($(USE_LTO),)
-  USE_LTO = yes
+  USE_LTO = no
 endif
 
 # If enabled, this option allows to compile the application in THUMB mode.
@@ -49,6 +50,12 @@ endif
 # Enable this if you want to see the full log while compiling.
 ifeq ($(USE_VERBOSE_COMPILE),)
   USE_VERBOSE_COMPILE = yes
+endif
+
+# If enabled, this option makes the build process faster by not compiling
+# modules not used in the current configuration.
+ifeq ($(USE_SMART_BUILD),)
+  USE_SMART_BUILD = no
 endif
 
 #
@@ -160,8 +167,8 @@ INCDIR = $(ALLINC) $(TESTINC) $(CONFDIR)
 # -mcpu=
 MCU  = cortex-m7
 
-#TOOLCHN_DIR = /home/ed/Documents/arm_gcc/gcc-arm-none-eabi-10.3-2021.10/bin
-TOOLCHN_DIR = /home/ed/Documents/arm_gcc/gcc-arm-none-eabi-10.3-2021.10/bin
+# TOOLCHN_DIR = /home/ed/Documents/arm_gcc/gcc-arm-none-eabi-10.3-2021.10/bin
+TOOLCHN_DIR = /home/ed/Documents/arm_gcc/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin
 #TRGT = arm-elf-
 TRGT = $(TOOLCHN_DIR)/arm-none-eabi-
 CC   = $(TRGT)gcc
@@ -201,20 +208,12 @@ CPPWARN = -Wall -Wextra -Wundef
 
 # List all user C define here, like -D_DEBUG=1
 UDEFS = \
-    -DXIP_EXTERNAL_FLASH=1 \
-    -DXIP_BOOT_HEADER_ENABLE=1 \
-    -DDEBUG \
     -DCPU_MIMXRT1021DAG5A \
-    -DSERIAL_PORT_TYPE_UART=1 \
     -DMIMXRT1021EVK_EVAL_BRD
 
 
 # Define ASM defines here
-UADEFS = \
-    -D__STARTUP_CLEAR_BSS \
-    -DDEBUG \
-    -D__STARTUP_INITIALIZE_NONCACHEDATA
-
+UADEFS = 
 
 # List all user directories here
 UINCDIR =
