@@ -167,8 +167,8 @@ INCDIR = $(ALLINC) $(TESTINC) $(CONFDIR)
 # -mcpu=
 MCU  = cortex-m7
 
-# TOOLCHN_DIR = /home/ed/Documents/arm_gcc/gcc-arm-none-eabi-10.3-2021.10/bin
-TOOLCHN_DIR = /home/ed/Documents/arm_gcc/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin
+TOOLCHN_DIR = /home/ed/Documents/arm_gcc/gcc-arm-none-eabi-10.3-2021.10/bin
+# TOOLCHN_DIR = /home/ed/Documents/arm_gcc/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin
 #TRGT = arm-elf-
 TRGT = $(TOOLCHN_DIR)/arm-none-eabi-
 CC   = $(TRGT)gcc
@@ -209,7 +209,8 @@ CPPWARN = -Wall -Wextra -Wundef
 # List all user C define here, like -D_DEBUG=1
 UDEFS = \
     -DCPU_MIMXRT1021DAG5A \
-    -DMIMXRT1021EVK_EVAL_BRD
+    -DMIMXRT1021EVK_EVAL_BRD \
+    -D__IMXRT1021__
 
 
 # Define ASM defines here

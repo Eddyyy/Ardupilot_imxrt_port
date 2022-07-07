@@ -21,15 +21,22 @@
 #define USER_LED_PORT GPIO_AD_B0_05
 
 int main(void) {
+  int i = 0;
+  int j = 0;
   while (1) {
     // palToggleLine(PORTAB_LINE_LED1);
     GPIO1->DR_TOGGLE = USER_LED_MASK;
 
     // chThdSleepMilliseconds(500);
-    int i = 0;
+    i = 0;
     while (i < 500) {
-        // Do Nothing?
+        // Delay 1 ms
+        j = 0;
+        while (j < 50000) {
+            j++;
+        }
         i++;
     }
+    i++;
   }
 }
