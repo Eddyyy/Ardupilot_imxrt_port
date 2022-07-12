@@ -3,7 +3,7 @@
 	url = git@github.com:Eddyyy/ChibiOS.git
 [submodule "ChibiOS-Contrib"]
 	path = ChibiOS-Contrib
-	url = https://github.com/Eddyyy/ChibiOS-Contrib.git
+	url = git@github.com:Eddyyy/ChibiOS-Contrib.git
 [submodule "ChRt"]
 	path = ChRt
 	url = git@github.com:greiman/ChRt.git
