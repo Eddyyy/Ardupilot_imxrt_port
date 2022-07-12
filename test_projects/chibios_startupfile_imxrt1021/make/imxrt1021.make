@@ -106,18 +106,11 @@ DEPDIR   := ./.dep
 
 # Imported source files and paths
 CHIBIOS = ../../ChibiOS
+CHIBIOS_CONTRIB = ../../ChibiOS-Contrib
 # Licensing files.
 include $(CHIBIOS)/os/license/license.mk
 # Startup files.
-include $(CHIBIOS)/os/common/startup/ARMCMx/compilers/GCC/mk/startup_MIMXRT1021.mk
-# Library files
-# include ./libraries/drivers/drivers.mk
-# include ./libraries/debug/debug.mk
-# MCU Files
-# include ./src/board/board.mk
-# include ./src/device/device.mk
-# CMSIS h files
-# ALLINC += ./include/CMSIS
+include $(CHIBIOS_CONTRIB)/os/common/startup/ARMCMx/compilers/GCC/mk/startup_MIMXRT1021.mk
 
 # HAL-OSAL files (optional).
 #Include $(CHIBIOS)/os/hal/hal.mk
@@ -132,19 +125,14 @@ include $(CHIBIOS)/os/common/ports/ARMv7-M/compilers/GCC/mk/port.mk
 #include $(CHIBIOS)/test/rt/rt_test.mk
 #include $(CHIBIOS)/test/oslib/oslib_test.mk
 
-# Initializsing assembly file
-# ALLASMSRC += ./startup/startup_MIMXRT1021.S
-
 # Define linker script file here
-LDSCRIPT= $(STARTUPLD)/MIMXRT1021xxxxx_flexspi_nor.ld
+LDSCRIPT= $(STARTUPLD_CONTRIB)/MIMXRT1021xxxxx_flexspi_nor.ld
 
 # C sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
 CSRC = $(ALLCSRC) \
        $(TESTSRC) \
        ./src/simple_blink.c
-       # ./src/main.c
-       # ./src/gpio_led_output.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
