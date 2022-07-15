@@ -202,7 +202,8 @@ UDEFS = \
 
 
 # Define ASM defines here
-UADEFS = 
+UADEFS = \
+    -DMIMXRT1021EVK_EVAL_BRD
 
 # List all user directories here
 UINCDIR =

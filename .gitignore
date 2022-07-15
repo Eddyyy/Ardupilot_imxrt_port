@@ -45,3 +45,6 @@ test_projects/chibios_pal_imxrt/ChibiOS/
 
 # Cscopes database files
 cscopes/
+
+# ClangD files
+.cache/
