@@ -7,6 +7,7 @@
 ifeq ($(USE_OPT),)
   USE_OPT = \
     -ggdb \
+    -gdwarf-4 -g3 \
 	-O0 \
     -fomit-frame-pointer \
     -falign-functions=16
