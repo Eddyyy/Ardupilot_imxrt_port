@@ -14,6 +14,10 @@
     limitations under the License.
 */
 
+#include "ch.h"
+// #include "hal.h"
+#include "portab.h"
+
 #include "MIMXRT1021.h"
 /*
 #define USER_LED_PAD GPIO1_IO05
@@ -22,6 +26,21 @@
 
 #define USER_LED_MASK 1<<5
 iomuxc_sw_mux_ctl_pad_t user_led_config = kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B0_05;
+
+/*
+static THD_WORKING_AREA(waThread1, 128);
+static THD_FUNCTION(Thread1, arg) {
+    (void)arg;
+    chRegSetThreadName("blinker");
+    while (true) {
+
+        // palToggleLine(PORTAB_LINE_LED1);
+        GPIO1->DR_TOGGLE = USER_LED_MASK;
+
+        chThdSleepMilliseconds(500);
+    }
+}
+*/
 
 int main(void) {
 
@@ -38,24 +57,25 @@ int main(void) {
     //IOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B0_05 = 0b101; //ALT5
     IOMUXC->SW_MUX_CTL_PAD[user_led_config] = 0b101; // ALT5, select GPIO peripheral
 
+    // Set GPIO1_IO05 to output
     GPIO1->GDIR |= USER_LED_MASK;
 
-    int i = 0;
-    int j = 0;
-    while (1) {
+    /*
+     * System initializations.
+     * - HAL initialization, this also initializes the configured device drivers
+     *   and performs the board-specific initializations.
+     * - Kernel initialization, the main() function becomes a thread and the
+     *   RTOS is active.
+     */
+    // halInit();
+    chSysInit();
+
+    //chThdCreateStatic(waThread1, sizeof(waThread1), NORMALPRIO, Thread1, NULL);
+
+    while (true) {
+
         // palToggleLine(PORTAB_LINE_LED1);
         GPIO1->DR_TOGGLE = USER_LED_MASK;
-
-        // chThdSleepMilliseconds(500);
-        i = 0;
-        while (i < 500) {
-            // Delay 1 ms
-            j = 0;
-            while (j < 50000) {
-                j++;
-            }
-            i++;
-        }
-        i++;
+        chThdSleepMilliseconds(500);
     }
 }
