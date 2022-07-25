@@ -125,7 +125,7 @@
  *          must be set to zero in that case.
  */
 #if !defined(CH_CFG_TIME_QUANTUM)
-#define CH_CFG_TIME_QUANTUM                 0
+#define CH_CFG_TIME_QUANTUM                 20
 #endif
 
 /**
@@ -349,7 +349,7 @@
  * @note    Requires @p CH_CFG_USE_HEAP and/or @p CH_CFG_USE_MEMPOOLS.
  */
 #if !defined(CH_CFG_USE_DYNAMIC)
-#define CH_CFG_USE_DYNAMIC                  TRUE
+#define CH_CFG_USE_DYNAMIC                  FALSE
 #endif
 
 /** @} */
@@ -575,7 +575,7 @@
  * @note    The default is @p FALSE.
  */
 #if !defined(CH_DBG_STATISTICS)
-#define CH_DBG_STATISTICS                   FALSE
+#define CH_DBG_STATISTICS                   TRUE
 #endif
 
 /**
@@ -834,6 +834,10 @@
 /*===========================================================================*/
 /* Port-specific settings (override port settings defaulted in chcore.h).    */
 /*===========================================================================*/
+
+#define CORTEX_SIMPLIFIED_PRIORITY  TRUE
+#define CORTEX_ENABLE_WFI_IDLE      TRUE
+#define PORT_ENABLE_GUARD_PAGES     TRUE
 
 #endif  /* CHCONF_H */
 

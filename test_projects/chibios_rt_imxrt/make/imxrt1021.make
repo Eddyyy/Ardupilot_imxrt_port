@@ -117,7 +117,7 @@ include $(CHIBIOS_CONTRIB)/os/common/startup/ARMCMx/compilers/GCC/mk/startup_MIM
 #Include $(CHIBIOS)/os/hal/hal.mk
 #Include $(CHIBIOS)/os/hal/templates/platform.mk
 #Include $(CHIBIOS)/os/hal/templates/board/board.mk
-#Include $(CHIBIOS)/os/hal/templates/osal/osal.mk
+include $(CHIBIOS)/os/hal/osal/rt-nil/osal.mk
 # RTOS files (optional).
 include $(CHIBIOS)/os/rt/rt.mk
 include $(CHIBIOS)/os/common/ports/ARMv7-M/compilers/GCC/mk/port.mk
