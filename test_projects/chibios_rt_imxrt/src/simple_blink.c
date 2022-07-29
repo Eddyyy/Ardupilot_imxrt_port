@@ -27,20 +27,18 @@
 #define USER_LED_MASK 1<<5
 iomuxc_sw_mux_ctl_pad_t user_led_config = kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B0_05;
 
-/*
 static THD_WORKING_AREA(waThread1, 128);
 static THD_FUNCTION(Thread1, arg) {
     (void)arg;
-    chRegSetThreadName("blinker");
-    while (true) {
+    chRegSetThreadName("sleeper");
 
+    while (true) {
         // palToggleLine(PORTAB_LINE_LED1);
         GPIO1->DR_TOGGLE = USER_LED_MASK;
 
         chThdSleepMilliseconds(500);
     }
 }
-*/
 
 int main(void) {
 
@@ -70,12 +68,12 @@ int main(void) {
     // halInit();
     chSysInit();
 
-    //chThdCreateStatic(waThread1, sizeof(waThread1), NORMALPRIO, Thread1, NULL);
+    chThdCreateStatic(waThread1, sizeof(waThread1), NORMALPRIO, Thread1, NULL);
 
     while (true) {
-
         // palToggleLine(PORTAB_LINE_LED1);
-        GPIO1->DR_TOGGLE = USER_LED_MASK;
-        chThdSleepMilliseconds(500);
+        // GPIO1->DR_TOGGLE = USER_LED_MASK;
+
+        chThdSleepMilliseconds(600);
     }
 }

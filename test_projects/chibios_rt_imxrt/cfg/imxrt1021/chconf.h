@@ -125,7 +125,7 @@
  *          must be set to zero in that case.
  */
 #if !defined(CH_CFG_TIME_QUANTUM)
-#define CH_CFG_TIME_QUANTUM                 20
+#define CH_CFG_TIME_QUANTUM                 0
 #endif
 
 /**
@@ -190,7 +190,7 @@
  * @note    The default is @p TRUE.
  */
 #if !defined(CH_CFG_USE_TM)
-#define CH_CFG_USE_TM                       TRUE
+#define CH_CFG_USE_TM                       FALSE
 #endif
 
 /**
@@ -349,7 +349,7 @@
  * @note    Requires @p CH_CFG_USE_HEAP and/or @p CH_CFG_USE_MEMPOOLS.
  */
 #if !defined(CH_CFG_USE_DYNAMIC)
-#define CH_CFG_USE_DYNAMIC                  FALSE
+#define CH_CFG_USE_DYNAMIC                  TRUE
 #endif
 
 /** @} */
@@ -575,7 +575,7 @@
  * @note    The default is @p FALSE.
  */
 #if !defined(CH_DBG_STATISTICS)
-#define CH_DBG_STATISTICS                   TRUE
+#define CH_DBG_STATISTICS                   FALSE
 #endif
 
 /**

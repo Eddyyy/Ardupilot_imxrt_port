@@ -56,7 +56,7 @@ endif
 # If enabled, this option makes the build process faster by not compiling
 # modules not used in the current configuration.
 ifeq ($(USE_SMART_BUILD),)
-  USE_SMART_BUILD = no
+  USE_SMART_BUILD = yes
 endif
 
 #
@@ -77,6 +77,30 @@ endif
 # stack is used for processing interrupts and exceptions.
 ifeq ($(USE_EXCEPTIONS_STACKSIZE),)
   USE_EXCEPTIONS_STACKSIZE = 0x400
+endif
+
+# Stack size to the allocated to the ARM FIQ stack. This
+# stack is used for processing interrupts and exceptions.
+ifeq ($(USE_FIQ_STACKSIZE),)
+  USE_FIQ_STACKSIZE = 64
+endif
+
+# Stack size to the allocated to the ARM Supervisor stack. This
+# stack is used for processing interrupts and exceptions.
+ifeq ($(USE_SUPERVISOR_STACKSIZE),)
+  USE_SUPERVISOR_STACKSIZE = 8
+endif
+
+# Stack size to the allocated to the ARM Undefined stack. This
+# stack is used for processing interrupts and exceptions.
+ifeq ($(USE_UND_STACKSIZE),)
+  USE_UND_STACKSIZE = 8
+endif
+
+# Stack size to the allocated to the ARM Abort stack. This
+# stack is used for processing interrupts and exceptions.
+ifeq ($(USE_ABT_STACKSIZE),)
+  USE_ABT_STACKSIZE = 8
 endif
 
 # Enables the use of FPU (no, softfp, hard).
@@ -117,7 +141,7 @@ include $(CHIBIOS_CONTRIB)/os/common/startup/ARMCMx/compilers/GCC/mk/startup_MIM
 #Include $(CHIBIOS)/os/hal/hal.mk
 #Include $(CHIBIOS)/os/hal/templates/platform.mk
 #Include $(CHIBIOS)/os/hal/templates/board/board.mk
-include $(CHIBIOS)/os/hal/osal/rt-nil/osal.mk
+#include $(CHIBIOS)/os/hal/osal/rt-nil/osal.mk
 # RTOS files (optional).
 include $(CHIBIOS)/os/rt/rt.mk
 include $(CHIBIOS)/os/common/ports/ARMv7-M/compilers/GCC/mk/port.mk
@@ -179,7 +203,7 @@ BIN  = $(CP) -O binary
 AOPT =
 
 # THUMB-specific options here
-TOPT = -DTHUMB
+TOPT = -mthumb -DTHUMB
 
 # Define C warning options here
 CWARN = -Wall -Wextra -Wundef -Wstrict-prototypes
@@ -238,3 +262,8 @@ include $(RULESPATH)/rules.mk
 #
 # Custom rules
 ##############################################################################
+##############################################################################
+# MISRA check rule, requires PCLint and the setup files, not provided.
+#
+misra:
+	@lint-nt -v -w3 $(DEFS) pclint/co-gcc.lnt pclint/au-misra3.lnt pclint/waivers.lnt $(IINCDIR) $(CSRC) &> misra.txt
