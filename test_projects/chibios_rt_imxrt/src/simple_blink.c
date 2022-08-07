@@ -19,6 +19,43 @@
 #include "portab.h"
 
 #include "MIMXRT1021.h"
+
+#if !defined(SYSTEM_CLOCK)
+#define SYSTEM_CLOCK 8000000U
+#endif
+
+/*
+ * @brief   System Timer handler.
+ */
+CH_IRQ_HANDLER(SysTick_Handler) {
+
+  CH_IRQ_PROLOGUE();
+
+  chSysLockFromISR();
+  chSysTimerHandlerI();
+  chSysUnlockFromISR();
+
+  CH_IRQ_EPILOGUE();
+}
+static uint32_t seconds_counter;
+//static uint32_t minutes_counter;
+
+/*
+ * Seconds counter thread.
+ */
+static THD_WORKING_AREA(counter_thd_wa, 128);
+static THD_FUNCTION(counter_thd, arg) {
+
+  (void)arg;
+
+  chRegSetThreadName("counter");
+
+  while (true) {
+    chThdSleepMilliseconds(1000);
+    seconds_counter++;
+  }
+}
+
 /*
 #define USER_LED_PAD GPIO1_IO05
 #define USER_LED_PORT GPIO_AD_B0_05
@@ -27,10 +64,10 @@
 #define USER_LED_MASK 1<<5
 iomuxc_sw_mux_ctl_pad_t user_led_config = kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B0_05;
 
-static THD_WORKING_AREA(waThread1, 128);
-static THD_FUNCTION(Thread1, arg) {
+static THD_WORKING_AREA(blinker_thd_wa, 128);
+static THD_FUNCTION(blinker_thd, arg) {
     (void)arg;
-    chRegSetThreadName("sleeper");
+    chRegSetThreadName("blinker");
 
     while (true) {
         // palToggleLine(PORTAB_LINE_LED1);
@@ -59,6 +96,18 @@ int main(void) {
     GPIO1->GDIR |= USER_LED_MASK;
 
     /*
+     * Hardware initialization, in this simple demo just the systick timer is
+     * initialized.
+     */
+    SysTick->LOAD = SYSTEM_CLOCK / CH_CFG_ST_FREQUENCY - (systime_t)1;
+    SysTick->VAL = (uint32_t)0;
+    SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_ENABLE_Msk |
+                    SysTick_CTRL_TICKINT_Msk;
+
+    /* IRQ enabled.*/
+    NVIC_SetPriority(SysTick_IRQn, 8);
+
+    /*
      * System initializations.
      * - HAL initialization, this also initializes the configured device drivers
      *   and performs the board-specific initializations.
@@ -68,12 +117,13 @@ int main(void) {
     // halInit();
     chSysInit();
 
-    chThdCreateStatic(waThread1, sizeof(waThread1), NORMALPRIO, Thread1, NULL);
+    chThdCreateStatic(blinker_thd_wa, sizeof(blinker_thd_wa), NORMALPRIO+1, blinker_thd, NULL);
+    chThdCreateStatic(counter_thd_wa, sizeof(counter_thd_wa), NORMALPRIO+2, counter_thd, NULL);
 
     while (true) {
         // palToggleLine(PORTAB_LINE_LED1);
         // GPIO1->DR_TOGGLE = USER_LED_MASK;
 
-        chThdSleepMilliseconds(600);
+        chThdSleepMilliseconds(60);
     }
 }
