@@ -21,7 +21,7 @@
 #include "MIMXRT1021.h"
 
 #if !defined(SYSTEM_CLOCK)
-#define SYSTEM_CLOCK 8000000U
+#define SYSTEM_CLOCK 500000000U
 #endif
 
 /*

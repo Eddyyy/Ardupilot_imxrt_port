@@ -36,6 +36,9 @@ docs/chip_docs/*
 
 # Text Editor Files
 .*.swp
+.cproject
+.project
+.settings/
 
 # Doc compiled files
 docs/development/*.html
