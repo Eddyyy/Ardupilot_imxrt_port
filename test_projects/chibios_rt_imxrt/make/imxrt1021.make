@@ -50,7 +50,7 @@ endif
 
 # Enable this if you want to see the full log while compiling.
 ifeq ($(USE_VERBOSE_COMPILE),)
-  USE_VERBOSE_COMPILE = yes
+  USE_VERBOSE_COMPILE = no
 endif
 
 # If enabled, this option makes the build process faster by not compiling
@@ -136,6 +136,9 @@ CHIBIOS_CONTRIB = ../../ChibiOS-Contrib
 include $(CHIBIOS)/os/license/license.mk
 # Startup files.
 include $(CHIBIOS_CONTRIB)/os/common/startup/ARMCMx/compilers/GCC/mk/startup_MIMXRT1021.mk
+
+# extra fault handlers
+include $(CHIBIOS_CONTRIB)/os/common/ports/ARMCMx/compilers/GCC/utils/fault_handlers_v7m.mk
 
 # HAL-OSAL files (optional).
 #Include $(CHIBIOS)/os/hal/hal.mk

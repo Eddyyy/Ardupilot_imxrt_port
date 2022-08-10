@@ -125,7 +125,7 @@
  *          must be set to zero in that case.
  */
 #if !defined(CH_CFG_TIME_QUANTUM)
-#define CH_CFG_TIME_QUANTUM                 10
+#define CH_CFG_TIME_QUANTUM                 0
 #endif
 
 /**
@@ -506,7 +506,7 @@
  * @note    The default is @p FALSE.
  */
 #if !defined(CH_CFG_USE_FACTORY)
-#define CH_CFG_USE_FACTORY                  TRUE
+#define CH_CFG_USE_FACTORY                  FALSE
 #endif
 
 /**
@@ -597,7 +597,7 @@
  * @note    The default is @p FALSE.
  */
 #if !defined(CH_DBG_ENABLE_CHECKS)
-#define CH_DBG_ENABLE_CHECKS                TRUE
+#define CH_DBG_ENABLE_CHECKS                FALSE
 #endif
 
 /**
@@ -619,7 +619,7 @@
  * @note    The default is @p CH_DBG_TRACE_MASK_DISABLED.
  */
 #if !defined(CH_DBG_TRACE_MASK)
-#define CH_DBG_TRACE_MASK                   CH_DBG_TRACE_MASK_ALL
+#define CH_DBG_TRACE_MASK                   CH_DBG_TRACE_MASK_DISABLED
 #endif
 
 /**
@@ -642,7 +642,7 @@
  *          @p panic_msg variable set to @p NULL.
  */
 #if !defined(CH_DBG_ENABLE_STACK_CHECK)
-#define CH_DBG_ENABLE_STACK_CHECK           TRUE
+#define CH_DBG_ENABLE_STACK_CHECK           FALSE
 #endif
 
 /**
@@ -837,7 +837,7 @@
 
 #define CORTEX_SIMPLIFIED_PRIORITY  TRUE
 #define CORTEX_ENABLE_WFI_IDLE      TRUE
-#define PORT_ENABLE_GUARD_PAGES     TRUE
+#define PORT_ENABLE_GUARD_PAGES     FALSE
 
 #endif  /* CHCONF_H */
 

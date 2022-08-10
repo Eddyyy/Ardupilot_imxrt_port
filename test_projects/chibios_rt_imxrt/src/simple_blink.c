@@ -64,24 +64,24 @@ static THD_FUNCTION(counter_thd, arg) {
 #define USER_LED_MASK 1<<5
 iomuxc_sw_mux_ctl_pad_t user_led_config = kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B0_05;
 
-static THD_WORKING_AREA(blinker_thd_wa, 128);
-static THD_FUNCTION(blinker_thd, arg) {
-    (void)arg;
-    chRegSetThreadName("blinker");
-
-    while (true) {
-        // palToggleLine(PORTAB_LINE_LED1);
-        GPIO1->DR_TOGGLE = USER_LED_MASK;
-
-        chThdSleepMilliseconds(500);
-    }
-}
+// static THD_WORKING_AREA(blinker_thd_wa, 128);
+// static THD_FUNCTION(blinker_thd, arg) {
+//     (void)arg;
+//     chRegSetThreadName("blinker");
+// 
+//     while (true) {
+//         // palToggleLine(PORTAB_LINE_LED1);
+//         GPIO1->DR_TOGGLE = USER_LED_MASK;
+// 
+//         chThdSleepMilliseconds(500);
+//     }
+// }
 
 int main(void) {
 
     //gpio1_clk_enable = 1;
     CCM->CCGR1 |= CCM_CCGR1_CG13(0b11);
-
+    seconds_counter = 0;
     // GPIO1_IO5 pad config register
     // SW_MUX_CTL_PAD_GPIO_AD_B0_05
     // IOMUXC->SW_PAD_CTL_PAD[
@@ -117,13 +117,13 @@ int main(void) {
     // halInit();
     chSysInit();
 
-    chThdCreateStatic(blinker_thd_wa, sizeof(blinker_thd_wa), NORMALPRIO+1, blinker_thd, NULL);
+    // chThdCreateStatic(blinker_thd_wa, sizeof(blinker_thd_wa), NORMALPRIO+1, blinker_thd, NULL);
     chThdCreateStatic(counter_thd_wa, sizeof(counter_thd_wa), NORMALPRIO+2, counter_thd, NULL);
 
     while (true) {
         // palToggleLine(PORTAB_LINE_LED1);
         // GPIO1->DR_TOGGLE = USER_LED_MASK;
 
-        chThdSleepMilliseconds(60);
+        chThdSleepMilliseconds(750);
     }
 }
