@@ -19,10 +19,13 @@
 #include "portab.h"
 
 #include "MIMXRT1021.h"
+#include "clock_config.h"
 
-#if !defined(SYSTEM_CLOCK)
-#define SYSTEM_CLOCK 500000000U
-#endif
+//#if !defined(SYSTEM_CLOCK)
+//#define SYSTEM_CLOCK DEFAULT_SYSTEM_CLOCK
+//#endif
+/* System clock frequency. */
+extern uint32_t SystemCoreClock;
 
 /*
  * @brief   System Timer handler.
@@ -77,7 +80,13 @@ iomuxc_sw_mux_ctl_pad_t user_led_config = kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B0_05;
 //     }
 // }
 
-int main(void) {
+void init_board(void) {
+
+    // DEMCR |= VC_HARDERR;
+    *((uint32_t*)0xE000EDFC)|=0x0000400;
+
+    BOARD_InitBootClocks();
+    //SystemCoreClockUpdate();
 
     //gpio1_clk_enable = 1;
     CCM->CCGR1 |= CCM_CCGR1_CG13(0b11);
@@ -99,10 +108,19 @@ int main(void) {
      * Hardware initialization, in this simple demo just the systick timer is
      * initialized.
      */
-    SysTick->LOAD = SYSTEM_CLOCK / CH_CFG_ST_FREQUENCY - (systime_t)1;
+    SysTick->LOAD = BOARD_BOOTCLOCKRUN_CORE_CLOCK / CH_CFG_ST_FREQUENCY - (systime_t)1;
+    //SysTick->LOAD = SystemCoreClock / CH_CFG_ST_FREQUENCY - (systime_t)1;
     SysTick->VAL = (uint32_t)0;
     SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_ENABLE_Msk |
                     SysTick_CTRL_TICKINT_Msk;
+
+
+}
+
+int main(void) {
+
+    init_board();
+
 
     /* IRQ enabled.*/
     NVIC_SetPriority(SysTick_IRQn, 8);
@@ -118,11 +136,11 @@ int main(void) {
     chSysInit();
 
     // chThdCreateStatic(blinker_thd_wa, sizeof(blinker_thd_wa), NORMALPRIO+1, blinker_thd, NULL);
-    chThdCreateStatic(counter_thd_wa, sizeof(counter_thd_wa), NORMALPRIO+2, counter_thd, NULL);
+    // chThdCreateStatic(counter_thd_wa, sizeof(counter_thd_wa), NORMALPRIO+2, counter_thd, NULL);
 
     while (true) {
         // palToggleLine(PORTAB_LINE_LED1);
-        // GPIO1->DR_TOGGLE = USER_LED_MASK;
+        GPIO1->DR_TOGGLE = USER_LED_MASK;
 
         chThdSleepMilliseconds(750);
     }

@@ -137,8 +137,8 @@ include $(CHIBIOS)/os/license/license.mk
 # Startup files.
 include $(CHIBIOS_CONTRIB)/os/common/startup/ARMCMx/compilers/GCC/mk/startup_MIMXRT1021.mk
 
-# extra fault handlers
-include $(CHIBIOS_CONTRIB)/os/common/ports/ARMCMx/compilers/GCC/utils/fault_handlers_v7m.mk
+# FSL Temporily imported setup files
+include ./fsl_libraries/fsl_lib.mk
 
 # HAL-OSAL files (optional).
 #Include $(CHIBIOS)/os/hal/hal.mk
